@@ -1,0 +1,386 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Be Nice Fungi Shop - Hongos Funcionales Premium">
+  <Header />
+  
+  <main class="pt-20">
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-cream-50 to-sage-50">
+      <!-- Decorative background elements -->
+      <div class="absolute inset-0 opacity-20">
+        <div class="ornamental-pattern w-full h-full"></div>
+      </div>
+      
+      <!-- Floating decorative elements -->
+      <div class="absolute top-20 left-10 w-16 h-16 bg-sage-200 rounded-full opacity-60 animate-float"></div>
+      <div class="absolute top-40 right-20 w-12 h-12 bg-earth-200 rounded-full opacity-40 animate-float" style="animation-delay: 1s;"></div>
+      <div class="absolute bottom-32 left-20 w-20 h-20 bg-mushroom-200 rounded-full opacity-50 animate-float" style="animation-delay: 2s;"></div>
+      <div class="absolute bottom-20 right-10 w-8 h-8 bg-sage-300 rounded-full opacity-70 animate-float" style="animation-delay: 0.5s;"></div>
+
+      <div class="container mx-auto px-4 py-20 relative z-10">
+        <div class="max-w-5xl mx-auto text-center">
+          <!-- Main Logo/Brand Circle -->
+          <div class="mb-12 animate-scale-in">
+            <div class="relative w-40 h-40 mx-auto mb-8 circular-ornament">
+              <!-- Círculo exterior principal -->
+              <div class="absolute inset-0 rounded-full border-8 border-earth-500 bg-gradient-to-br from-cream-100 to-cream-200 shadow-2xl"></div>
+              
+              <!-- Círculo intermedio -->
+              <div class="absolute inset-4 rounded-full border-4 border-sage-500 bg-gradient-to-br from-sage-100 to-sage-200">
+                <!-- Elementos decorativos internos -->
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <!-- Hongo central estilizado -->
+                  <svg class="w-16 h-16 text-earth-700" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C8.5 2 5.5 4.5 5.5 7.5c0 1.5 0.5 3 1.5 4.5h10c1-1.5 1.5-3 1.5-4.5C18.5 4.5 15.5 2 12 2z"/>
+                    <path d="M10 12v8c0 1.1 0.9 2 2 2s2-0.9 2-2v-8H10z"/>
+                    <circle cx="8" cy="8" r="1.5" opacity="0.6"/>
+                    <circle cx="16" cy="8" r="1.5" opacity="0.6"/>
+                    <circle cx="12" cy="6" r="1" opacity="0.8"/>
+                  </svg>
+                </div>
+                
+                <!-- Elementos decorativos alrededor -->
+                <div class="absolute top-2 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-earth-500 rounded-full"></div>
+                <div class="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-earth-500 rounded-full"></div>
+                <div class="absolute top-1/2 left-2 transform -translate-y-1/2 w-3 h-3 bg-sage-600 rounded-full"></div>
+                <div class="absolute top-1/2 right-2 transform -translate-y-1/2 w-3 h-3 bg-sage-600 rounded-full"></div>
+                
+                <!-- Círculos decorativos adicionales -->
+                <div class="absolute top-6 left-6 w-2 h-2 bg-mushroom-500 rounded-full"></div>
+                <div class="absolute top-6 right-6 w-2 h-2 bg-mushroom-500 rounded-full"></div>
+                <div class="absolute bottom-6 left-6 w-2 h-2 bg-mushroom-500 rounded-full"></div>
+                <div class="absolute bottom-6 right-6 w-2 h-2 bg-mushroom-500 rounded-full"></div>
+              </div>
+              
+              <!-- Puntos decorativos exteriores -->
+              <div class="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-earth-600 rounded-full"></div>
+              <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-earth-600 rounded-full"></div>
+              <div class="absolute top-1/2 -left-2 transform -translate-y-1/2 w-4 h-4 bg-sage-600 rounded-full"></div>
+              <div class="absolute top-1/2 -right-2 transform -translate-y-1/2 w-4 h-4 bg-sage-600 rounded-full"></div>
+            </div>
+            
+            <h1 class="font-display text-6xl md:text-8xl font-bold text-earth-800 mb-4 tracking-wider">
+              BE NICE
+            </h1>
+            <p class="font-display text-3xl md:text-4xl text-sage-600 mb-4 tracking-widest">FUNGI SHOP</p>
+            <div class="flex justify-center items-center space-x-4 mb-8">
+              <div class="w-16 h-0.5 bg-gradient-to-r from-transparent to-earth-500"></div>
+              <div class="w-3 h-3 bg-earth-500 rounded-full"></div>
+              <div class="w-2 h-2 bg-sage-500 rounded-full"></div>
+              <div class="w-3 h-3 bg-mushroom-500 rounded-full"></div>
+              <div class="w-2 h-2 bg-sage-500 rounded-full"></div>
+              <div class="w-3 h-3 bg-earth-500 rounded-full"></div>
+              <div class="w-16 h-0.5 bg-gradient-to-l from-transparent to-earth-500"></div>
+            </div>
+          </div>
+
+          <!-- Main Message -->
+          <div class="mb-16 animate-slide-up">
+            <h2 class="text-4xl md:text-5xl font-display font-semibold text-earth-800 mb-8 leading-tight">
+              Eleva tu bienestar con el poder ancestral de los hongos
+            </h2>
+            <p class="text-xl md:text-2xl text-earth-700 max-w-4xl mx-auto leading-relaxed mb-8">
+              Descubre la sabiduría milenaria de los hongos funcionales y adaptógenos. 
+              Productos de la más alta calidad para potenciar tu mente, cuerpo y espíritu 
+              en armonía con la naturaleza.
+            </p>
+            <div class="flex justify-center">
+              <div class="w-32 h-1 bg-gradient-to-r from-sage-400 via-earth-400 to-sage-400 rounded-full"></div>
+            </div>
+          </div>
+
+          <!-- CTA Buttons -->
+          <div class="flex flex-col sm:flex-row gap-6 justify-center mb-20 animate-slide-up">
+            <a 
+              href="/tienda"
+              class="bg-sage-500 hover:bg-sage-600 text-white px-10 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl shadow-lg"
+            >
+              Explorar Productos
+            </a>
+            <a 
+              href="/educacion"
+              class="border-3 border-sage-500 text-sage-600 hover:bg-sage-500 hover:text-white px-10 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:scale-105 shadow-lg"
+            >
+              Aprender Más
+            </a>
+          </div>
+
+          <!-- Features Grid -->
+          <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto animate-fade-in">
+            <div class="text-center group">
+              <div class="relative w-20 h-20 bg-gradient-to-br from-sage-400 to-earth-400 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <div class="absolute inset-2 rounded-full border-2 border-cream-200 opacity-50"></div>
+                <svg class="w-10 h-10 text-white relative z-10" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+              </div>
+              <h3 class="font-display text-2xl font-semibold text-earth-800 mb-3">100% Natural</h3>
+              <p class="text-earth-600 leading-relaxed">Productos puros extraídos directamente de la naturaleza, sin aditivos artificiales ni químicos dañinos.</p>
+            </div>
+            
+            <div class="text-center group">
+              <div class="relative w-20 h-20 bg-gradient-to-br from-earth-400 to-mushroom-400 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <div class="absolute inset-2 rounded-full border-2 border-cream-200 opacity-50"></div>
+                <svg class="w-10 h-10 text-white relative z-10" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <h3 class="font-display text-2xl font-semibold text-earth-800 mb-3">Calidad Premium</h3>
+              <p class="text-earth-600 leading-relaxed">Rigurosos controles de calidad y certificaciones que garantizan la pureza y potencia de cada producto.</p>
+            </div>
+            
+            <div class="text-center group">
+              <div class="relative w-20 h-20 bg-gradient-to-br from-mushroom-400 to-sage-400 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <div class="absolute inset-2 rounded-full border-2 border-cream-200 opacity-50"></div>
+                <svg class="w-10 h-10 text-white relative z-10" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+              </div>
+              <h3 class="font-display text-2xl font-semibold text-earth-800 mb-3">Respaldo Científico</h3>
+              <p class="text-earth-600 leading-relaxed">Basado en investigación moderna que valida los beneficios ancestrales de los hongos funcionales.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div class="flex flex-col items-center">
+          <div class="w-6 h-10 border-2 border-earth-500 rounded-full flex justify-center">
+            <div class="w-1 h-3 bg-earth-500 rounded-full mt-2 animate-pulse"></div>
+          </div>
+          <p class="text-earth-600 text-sm mt-2 font-medium">Descubre más</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Products Preview -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="font-display text-4xl md:text-5xl font-bold text-earth-800 mb-6">
+            Productos Destacados
+          </h2>
+          <p class="text-xl text-earth-600 max-w-3xl mx-auto leading-relaxed">
+            Descubre nuestra selección premium de hongos funcionales, 
+            cada uno elegido por sus propiedades únicas y beneficios comprobados.
+          </p>
+          <div class="flex justify-center items-center space-x-4 mt-8">
+            <div class="w-16 h-0.5 bg-gradient-to-r from-transparent to-earth-500"></div>
+            <div class="w-3 h-3 bg-earth-500 rounded-full"></div>
+            <div class="w-2 h-2 bg-sage-500 rounded-full"></div>
+            <div class="w-3 h-3 bg-mushroom-500 rounded-full"></div>
+            <div class="w-2 h-2 bg-sage-500 rounded-full"></div>
+            <div class="w-3 h-3 bg-earth-500 rounded-full"></div>
+            <div class="w-16 h-0.5 bg-gradient-to-l from-transparent to-earth-500"></div>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 mb-12">
+          <!-- Product 1 -->
+          <div class="bg-cream-50 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-sage-200">
+            <div class="aspect-square overflow-hidden">
+              <img 
+                src="https://images.pexels.com/photos/7195706/pexels-photo-7195706.jpeg?auto=compress&cs=tinysrgb&w=500" 
+                alt="Melena de León"
+                class="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="font-display text-2xl font-semibold text-earth-800 mb-3">
+                Melena de León
+              </h3>
+              <p class="text-earth-600 mb-4 leading-relaxed">
+                El hongo de la claridad mental. Potencia tu concentración, memoria y función cognitiva.
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="font-bold text-2xl text-earth-800">Desde $35.000</span>
+                <a href="/tienda" class="bg-sage-500 hover:bg-sage-600 text-white px-4 py-2 rounded-full font-medium transition-all duration-300 hover:scale-105">
+                  Ver más
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 2 -->
+          <div class="bg-cream-50 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-sage-200">
+            <div class="aspect-square overflow-hidden">
+              <img 
+                src="https://images.pexels.com/photos/7195692/pexels-photo-7195692.jpeg?auto=compress&cs=tinysrgb&w=500" 
+                alt="Reishi"
+                class="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="font-display text-2xl font-semibold text-earth-800 mb-3">
+                Reishi
+              </h3>
+              <p class="text-earth-600 mb-4 leading-relaxed">
+                El hongo de la inmortalidad. Reduce el estrés, mejora el sueño y fortalece la inmunidad.
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="font-bold text-2xl text-earth-800">Desde $42.000</span>
+                <a href="/tienda" class="bg-sage-500 hover:bg-sage-600 text-white px-4 py-2 rounded-full font-medium transition-all duration-300 hover:scale-105">
+                  Ver más
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 3 -->
+          <div class="bg-cream-50 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-sage-200">
+            <div class="aspect-square overflow-hidden">
+              <img 
+                src="https://images.pexels.com/photos/7195694/pexels-photo-7195694.jpeg?auto=compress&cs=tinysrgb&w=500" 
+                alt="Cordyceps"
+                class="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="font-display text-2xl font-semibold text-earth-800 mb-3">
+                Cordyceps
+              </h3>
+              <p class="text-earth-600 mb-4 leading-relaxed">
+                El hongo de la energía. Aumenta la resistencia física y mejora la oxigenación celular.
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="font-bold text-2xl text-earth-800">Desde $38.000</span>
+                <a href="/tienda" class="bg-sage-500 hover:bg-sage-600 text-white px-4 py-2 rounded-full font-medium transition-all duration-300 hover:scale-105">
+                  Ver más
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <a 
+            href="/tienda"
+            class="bg-earth-500 hover:bg-earth-600 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl shadow-lg"
+          >
+            Ver Todos los Productos
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="py-20 bg-gradient-to-br from-sage-50 to-cream-50">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="font-display text-4xl md:text-5xl font-bold text-earth-800 mb-6">
+            ¿Por qué elegir Be Nice Fungi Shop?
+          </h2>
+          <div class="flex justify-center items-center space-x-4 mb-8">
+            <div class="w-16 h-0.5 bg-gradient-to-r from-transparent to-earth-500"></div>
+            <div class="w-3 h-3 bg-earth-500 rounded-full"></div>
+            <div class="w-2 h-2 bg-sage-500 rounded-full"></div>
+            <div class="w-3 h-3 bg-mushroom-500 rounded-full"></div>
+            <div class="w-2 h-2 bg-sage-500 rounded-full"></div>
+            <div class="w-3 h-3 bg-earth-500 rounded-full"></div>
+            <div class="w-16 h-0.5 bg-gradient-to-l from-transparent to-earth-500"></div>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div class="text-center group">
+            <div class="relative w-24 h-24 bg-gradient-to-br from-sage-400 to-earth-400 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+              <div class="absolute inset-3 rounded-full border-2 border-cream-200 opacity-50"></div>
+              <svg class="w-12 h-12 text-white relative z-10" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+            </div>
+            <h3 class="font-display text-xl font-semibold text-earth-800 mb-3">Sourcing Ético</h3>
+            <p class="text-earth-600 text-sm leading-relaxed">
+              Trabajamos directamente con productores certificados que comparten nuestros valores de sostenibilidad.
+            </p>
+          </div>
+
+          <div class="text-center group">
+            <div class="relative w-24 h-24 bg-gradient-to-br from-earth-400 to-mushroom-400 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+              <div class="absolute inset-3 rounded-full border-2 border-cream-200 opacity-50"></div>
+              <svg class="w-12 h-12 text-white relative z-10" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <h3 class="font-display text-xl font-semibold text-earth-800 mb-3">Control de Calidad</h3>
+            <p class="text-earth-600 text-sm leading-relaxed">
+              Cada lote es analizado en laboratorios certificados para garantizar pureza y potencia.
+            </p>
+          </div>
+
+          <div class="text-center group">
+            <div class="relative w-24 h-24 bg-gradient-to-br from-mushroom-400 to-sage-400 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+              <div class="absolute inset-3 rounded-full border-2 border-cream-200 opacity-50"></div>
+              <svg class="w-12 h-12 text-white relative z-10" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+            </div>
+            <h3 class="font-display text-xl font-semibold text-earth-800 mb-3">Servicio Personalizado</h3>
+            <p class="text-earth-600 text-sm leading-relaxed">
+              Asesoramiento personalizado para ayudarte a elegir los productos más adecuados.
+            </p>
+          </div>
+
+          <div class="text-center group">
+            <div class="relative w-24 h-24 bg-gradient-to-br from-sage-400 to-earth-400 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+              <div class="absolute inset-3 rounded-full border-2 border-cream-200 opacity-50"></div>
+              <svg class="w-12 h-12 text-white relative z-10" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+              </svg>
+            </div>
+            <h3 class="font-display text-xl font-semibold text-earth-800 mb-3">Educación Continua</h3>
+            <p class="text-earth-600 text-sm leading-relaxed">
+              Recursos educativos completos para maximizar los beneficios de los hongos funcionales.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-20 bg-earth-800 text-cream-100 relative overflow-hidden">
+      <div class="absolute inset-0 opacity-10">
+        <div class="mushroom-decoration w-full h-full"></div>
+      </div>
+      
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="text-center max-w-4xl mx-auto">
+          <h2 class="font-display text-4xl md:text-5xl font-bold mb-8">
+            Comienza tu viaje hacia el bienestar natural
+          </h2>
+          <p class="text-xl md:text-2xl mb-12 leading-relaxed opacity-90">
+            Únete a miles de personas que han transformado su vida con el poder de los hongos funcionales. 
+            Tu bienestar natural te está esperando.
+          </p>
+          
+          <div class="flex flex-col sm:flex-row gap-6 justify-center">
+            <a 
+              href="/tienda"
+              class="bg-sage-500 hover:bg-sage-600 text-white px-10 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:scale-105 shadow-xl"
+            >
+              Explorar Productos
+            </a>
+            <a 
+              href="https://wa.me/573001234567?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20sus%20productos%20de%20hongos%20funcionales"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="bg-green-500 hover:bg-green-600 text-white px-10 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:scale-105 shadow-xl flex items-center justify-center space-x-3"
+            >
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+              </svg>
+              <span>Consulta Personalizada</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

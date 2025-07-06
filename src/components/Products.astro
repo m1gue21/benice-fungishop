@@ -1,0 +1,230 @@
+---
+const products = [
+  {
+    id: 1,
+    name: "Microdosis Melena de León",
+    price: 35000,
+    image: "https://images.pexels.com/photos/7195706/pexels-photo-7195706.jpeg?auto=compress&cs=tinysrgb&w=500",
+    description: "Mejora tu concentración y memoria con nuestras microdosis de melena de león",
+    benefits: ["Concentración", "Memoria", "Neuroprotección"],
+    category: "microdosis"
+  },
+  {
+    id: 2,
+    name: "Extracto de Reishi",
+    price: 42000,
+    image: "https://images.pexels.com/photos/7195692/pexels-photo-7195692.jpeg?auto=compress&cs=tinysrgb&w=500",
+    description: "El hongo de la inmortalidad para relajación y bienestar",
+    benefits: ["Relajación", "Inmunidad", "Sueño"],
+    category: "extractos"
+  },
+  {
+    id: 3,
+    name: "Cordyceps Energía",
+    price: 38000,
+    image: "https://images.pexels.com/photos/7195694/pexels-photo-7195694.jpeg?auto=compress&cs=tinysrgb&w=500",
+    description: "Aumenta tu energía y resistencia naturalmente",
+    benefits: ["Energía", "Resistencia", "Oxigenación"],
+    category: "capsulas"
+  },
+  {
+    id: 4,
+    name: "Chaga Antioxidante",
+    price: 45000,
+    image: "https://images.pexels.com/photos/7195688/pexels-photo-7195688.jpeg?auto=compress&cs=tinysrgb&w=500",
+    description: "Potente antioxidante para fortalecer tu sistema inmune",
+    benefits: ["Antioxidante", "Inmunidad", "Antiinflamatorio"],
+    category: "extractos"
+  },
+  {
+    id: 5,
+    name: "Shiitake Inmunidad",
+    price: 32000,
+    image: "https://images.pexels.com/photos/7195690/pexels-photo-7195690.jpeg?auto=compress&cs=tinysrgb&w=500",
+    description: "Fortalece tu sistema inmune con shiitake premium",
+    benefits: ["Inmunidad", "Digestión", "Cardiovascular"],
+    category: "capsulas"
+  },
+  {
+    id: 6,
+    name: "Mix Adaptógeno",
+    price: 58000,
+    image: "https://images.pexels.com/photos/7195695/pexels-photo-7195695.jpeg?auto=compress&cs=tinysrgb&w=500",
+    description: "Combinación perfecta de hongos adaptógenos",
+    benefits: ["Adaptógeno", "Estrés", "Equilibrio"],
+    category: "mixtures"
+  }
+];
+---
+
+<section id="productos" class="py-20 bg-white">
+  <div class="container mx-auto px-4">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <h2 class="font-serif text-4xl md:text-5xl font-bold text-earth-800 mb-4">
+        Nuestros Productos
+      </h2>
+      <p class="text-lg text-earth-600 max-w-2xl mx-auto">
+        Descubre nuestra cuidadosa selección de hongos funcionales, 
+        cada uno elegido por sus propiedades únicas y beneficios comprobados.
+      </p>
+      <div class="w-24 h-0.5 bg-gradient-to-r from-sage-400 to-earth-400 mx-auto mt-6"></div>
+    </div>
+
+    <!-- Filter Buttons -->
+    <div class="flex flex-wrap justify-center gap-4 mb-12">
+      <button class="filter-btn active bg-sage-500 text-white px-6 py-2 rounded-full font-medium transition-all duration-300 hover:scale-105" data-filter="all">
+        Todos
+      </button>
+      <button class="filter-btn bg-sage-100 text-sage-700 hover:bg-sage-200 px-6 py-2 rounded-full font-medium transition-all duration-300 hover:scale-105" data-filter="microdosis">
+        Microdosis
+      </button>
+      <button class="filter-btn bg-sage-100 text-sage-700 hover:bg-sage-200 px-6 py-2 rounded-full font-medium transition-all duration-300 hover:scale-105" data-filter="extractos">
+        Extractos
+      </button>
+      <button class="filter-btn bg-sage-100 text-sage-700 hover:bg-sage-200 px-6 py-2 rounded-full font-medium transition-all duration-300 hover:scale-105" data-filter="capsulas">
+        Cápsulas
+      </button>
+      <button class="filter-btn bg-sage-100 text-sage-700 hover:bg-sage-200 px-6 py-2 rounded-full font-medium transition-all duration-300 hover:scale-105" data-filter="mixtures">
+        Mezclas
+      </button>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="products-grid">
+      {products.map((product) => (
+        <div class="product-card bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105 border border-sage-100" data-category={product.category}>
+          <div class="aspect-square overflow-hidden">
+            <img 
+              src={product.image} 
+              alt={product.name}
+              class="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+            />
+          </div>
+          <div class="p-6">
+            <h3 class="font-serif text-xl font-semibold text-earth-800 mb-2">
+              {product.name}
+            </h3>
+            <p class="text-earth-600 mb-4 text-sm leading-relaxed">
+              {product.description}
+            </p>
+            
+            <!-- Benefits -->
+            <div class="flex flex-wrap gap-2 mb-4">
+              {product.benefits.map((benefit) => (
+                <span class="bg-sage-100 text-sage-700 px-3 py-1 rounded-full text-xs font-medium">
+                  {benefit}
+                </span>
+              ))}
+            </div>
+            
+            <div class="flex justify-between items-center">
+              <span class="font-bold text-2xl text-earth-800">
+                ${product.price.toLocaleString()}
+              </span>
+              <button 
+                class="bg-sage-500 hover:bg-sage-600 text-white px-4 py-2 rounded-full font-medium transition-all duration-300 hover:scale-105 add-to-cart"
+                data-id={product.id}
+                data-name={product.name}
+                data-price={product.price}
+              >
+                Agregar
+              </button>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- View More Button -->
+    <div class="text-center mt-12">
+      <button class="bg-earth-500 hover:bg-earth-600 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-lg">
+        Ver Todos los Productos
+      </button>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Filter functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const productCards = document.querySelectorAll('.product-card');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const filter = button.dataset.filter;
+        
+        // Update active button
+        filterButtons.forEach(btn => {
+          btn.classList.remove('active', 'bg-sage-500', 'text-white');
+          btn.classList.add('bg-sage-100', 'text-sage-700');
+        });
+        button.classList.add('active', 'bg-sage-500', 'text-white');
+        button.classList.remove('bg-sage-100', 'text-sage-700');
+
+        // Filter products
+        productCards.forEach(card => {
+          const category = card.dataset.category;
+          if (filter === 'all' || category === filter) {
+            card.style.display = 'block';
+            card.classList.add('animate-fade-in');
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Add to cart functionality
+    const addToCartButtons = document.querySelectorAll('.add-to-cart');
+    addToCartButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const productId = this.dataset.id;
+        const productName = this.dataset.name;
+        const productPrice = parseInt(this.dataset.price);
+        
+        addToCart(productId, productName, productPrice);
+        
+        // Visual feedback
+        this.textContent = '¡Agregado!';
+        this.classList.add('bg-green-500');
+        setTimeout(() => {
+          this.textContent = 'Agregar';
+          this.classList.remove('bg-green-500');
+        }, 1000);
+      });
+    });
+  });
+
+  // Cart functionality
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  function addToCart(id, name, price) {
+    const existingItem = cart.find(item => item.id === id);
+    
+    if (existingItem) {
+      existingItem.quantity += 1;
+    } else {
+      cart.push({
+        id: id,
+        name: name,
+        price: price,
+        quantity: 1
+      });
+    }
+    
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+  }
+
+  function updateCartCount() {
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    document.getElementById('cart-count').textContent = totalItems;
+    document.getElementById('mobile-cart-count').textContent = totalItems;
+  }
+
+  // Initialize cart count
+  updateCartCount();
+</script>
+</section>

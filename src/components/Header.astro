@@ -1,0 +1,161 @@
+---
+const currentPath = Astro.url.pathname;
+---
+
+<header class="bg-cream-100/95 backdrop-blur-sm fixed w-full top-0 z-50 border-b-2 border-earth-200 shadow-lg">
+  <nav class="container mx-auto px-4 py-4">
+    <div class="flex items-center justify-between">
+      <!-- Logo inspirado en el diseño original -->
+      <a href="/" class="flex items-center space-x-4 group">
+        <div class="relative w-16 h-16 circular-ornament">
+          <!-- Círculo exterior decorativo -->
+          <div class="absolute inset-0 rounded-full border-4 border-earth-500 bg-gradient-to-br from-cream-100 to-cream-200 shadow-lg group-hover:scale-105 transition-transform duration-300"></div>
+          
+          <!-- Elementos decorativos internos -->
+          <div class="absolute inset-2 rounded-full border-2 border-sage-500 bg-gradient-to-br from-sage-100 to-sage-200">
+            <!-- Hongo central estilizado -->
+            <div class="absolute inset-0 flex items-center justify-center">
+              <svg class="w-8 h-8 text-earth-600 group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C8.5 2 5.5 4.5 5.5 7.5c0 1.5 0.5 3 1.5 4.5h10c1-1.5 1.5-3 1.5-4.5C18.5 4.5 15.5 2 12 2z"/>
+                <path d="M10 12v8c0 1.1 0.9 2 2 2s2-0.9 2-2v-8H10z"/>
+                <circle cx="8" cy="8" r="1" opacity="0.6"/>
+                <circle cx="16" cy="8" r="1" opacity="0.6"/>
+                <circle cx="12" cy="6" r="0.5" opacity="0.8"/>
+              </svg>
+            </div>
+          </div>
+          
+          <!-- Puntos decorativos -->
+          <div class="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-earth-500 rounded-full"></div>
+          <div class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-earth-500 rounded-full"></div>
+          <div class="absolute top-1/2 -left-1 transform -translate-y-1/2 w-2 h-2 bg-sage-500 rounded-full"></div>
+          <div class="absolute top-1/2 -right-1 transform -translate-y-1/2 w-2 h-2 bg-sage-500 rounded-full"></div>
+        </div>
+        
+        <div class="hidden sm:block">
+          <h1 class="font-display text-2xl font-bold text-earth-800 tracking-wide">BE NICE</h1>
+          <p class="text-sm text-earth-600 font-medium tracking-widest -mt-1">FUNGI SHOP</p>
+        </div>
+      </a>
+
+      <!-- Mobile menu button -->
+      <button class="md:hidden p-2 rounded-lg hover:bg-earth-100 transition-colors" id="mobile-menu-btn" aria-label="Abrir menú">
+        <svg class="w-6 h-6 text-earth-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center space-x-8">
+        <a href="/" class={`text-earth-700 hover:text-sage-600 transition-colors font-medium relative ${currentPath === '/' ? 'text-sage-600 font-semibold' : ''}`}>
+          Inicio
+          {currentPath === '/' && <div class="absolute -bottom-1 left-0 w-full h-0.5 bg-sage-500"></div>}
+        </a>
+        <a href="/tienda" class={`text-earth-700 hover:text-sage-600 transition-colors font-medium relative ${currentPath.startsWith('/tienda') ? 'text-sage-600 font-semibold' : ''}`}>
+          Tienda
+          {currentPath.startsWith('/tienda') && <div class="absolute -bottom-1 left-0 w-full h-0.5 bg-sage-500"></div>}
+        </a>
+        <a href="/educacion" class={`text-earth-700 hover:text-sage-600 transition-colors font-medium relative ${currentPath.startsWith('/educacion') ? 'text-sage-600 font-semibold' : ''}`}>
+          Guías de Educación
+          {currentPath.startsWith('/educacion') && <div class="absolute -bottom-1 left-0 w-full h-0.5 bg-sage-500"></div>}
+        </a>
+        <a href="/nosotros" class={`text-earth-700 hover:text-sage-600 transition-colors font-medium relative ${currentPath === '/nosotros' ? 'text-sage-600 font-semibold' : ''}`}>
+          Nosotros
+          {currentPath === '/nosotros' && <div class="absolute -bottom-1 left-0 w-full h-0.5 bg-sage-500"></div>}
+        </a>
+        <a href="/contacto" class={`text-earth-700 hover:text-sage-600 transition-colors font-medium relative ${currentPath === '/contacto' ? 'text-sage-600 font-semibold' : ''}`}>
+          Contacto
+          {currentPath === '/contacto' && <div class="absolute -bottom-1 left-0 w-full h-0.5 bg-sage-500"></div>}
+        </a>
+        
+        <!-- Cart Button -->
+        <button class="bg-sage-500 hover:bg-sage-600 text-white px-4 py-2 rounded-full transition-all duration-300 hover:scale-105 font-medium shadow-lg" id="cart-btn">
+          <span class="flex items-center space-x-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.5 6M7 13l-1.5-6m0 0h15M17 21a2 2 0 100-4 2 2 0 000 4zM9 21a2 2 0 100-4 2 2 0 000 4z"></path>
+            </svg>
+            <span>(<span id="cart-count">0</span>)</span>
+          </span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div class="md:hidden fixed inset-0 bg-black/50 z-50 hidden" id="mobile-menu">
+      <div class="bg-cream-100 w-80 h-full ml-auto p-6 shadow-2xl">
+        <div class="flex justify-between items-center mb-8">
+          <h2 class="font-display text-xl font-bold text-earth-800">Menú</h2>
+          <button class="p-2 rounded-lg hover:bg-earth-100 transition-colors" id="mobile-menu-close" aria-label="Cerrar menú">
+            <svg class="w-6 h-6 text-earth-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+        
+        <nav class="flex flex-col space-y-4">
+          <a href="/" class="text-earth-700 hover:text-sage-600 transition-colors font-medium py-3 border-b border-earth-200">Inicio</a>
+          <a href="/tienda" class="text-earth-700 hover:text-sage-600 transition-colors font-medium py-3 border-b border-earth-200">Tienda</a>
+          <a href="/educacion" class="text-earth-700 hover:text-sage-600 transition-colors font-medium py-3 border-b border-earth-200">Guías de Educación</a>
+          <a href="/nosotros" class="text-earth-700 hover:text-sage-600 transition-colors font-medium py-3 border-b border-earth-200">Nosotros</a>
+          <a href="/contacto" class="text-earth-700 hover:text-sage-600 transition-colors font-medium py-3 border-b border-earth-200">Contacto</a>
+          
+          <button class="bg-sage-500 hover:bg-sage-600 text-white px-6 py-3 rounded-full transition-all duration-300 font-medium mt-4 flex items-center justify-center space-x-2" id="mobile-cart-btn">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.5 6M7 13l-1.5-6m0 0h15M17 21a2 2 0 100-4 2 2 0 000 4zM9 21a2 2 0 100-4 2 2 0 000 4z"></path>
+            </svg>
+            <span>Carrito (<span id="mobile-cart-count">0</span>)</span>
+          </button>
+        </nav>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script>
+  // Mobile menu functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
+    const mobileCartBtn = document.getElementById('mobile-cart-btn');
+
+    mobileMenuBtn?.addEventListener('click', () => {
+      mobileMenu?.classList.remove('hidden');
+    });
+
+    mobileMenuClose?.addEventListener('click', () => {
+      mobileMenu?.classList.add('hidden');
+    });
+
+    // Close menu when clicking outside
+    mobileMenu?.addEventListener('click', (e) => {
+      if (e.target === mobileMenu) {
+        mobileMenu.classList.add('hidden');
+      }
+    });
+
+    // Mobile cart button
+    mobileCartBtn?.addEventListener('click', () => {
+      mobileMenu?.classList.add('hidden');
+      document.getElementById('cart-modal')?.classList.remove('hidden');
+      window.renderCart?.();
+    });
+
+    // Update cart count
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+      const cartCountElements = document.querySelectorAll('#cart-count, #mobile-cart-count');
+      cartCountElements.forEach(el => {
+        if (el) el.textContent = totalItems.toString();
+      });
+    }
+
+    updateCartCount();
+    
+    // Listen for cart updates
+    window.addEventListener('storage', updateCartCount);
+    window.addEventListener('cartUpdated', updateCartCount);
+  });
+</script>
+</header>

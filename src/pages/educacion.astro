@@ -1,0 +1,714 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Educación - Guías de Consumo | Be Nice Fungi Shop" description="Aprende todo sobre hongos funcionales, microdosis y adaptógenos. Guías completas de consumo, beneficios y mejores prácticas.">
+  <Header />
+  
+  <main class="pt-20">
+    <!-- Hero Section -->
+    <section class="py-16 bg-gradient-to-br from-cream-50 to-sage-50 relative overflow-hidden">
+      <div class="absolute inset-0 opacity-10">
+        <div class="ornamental-pattern w-full h-full"></div>
+      </div>
+      
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="text-center max-w-4xl mx-auto">
+          <h1 class="font-display text-5xl md:text-6xl font-bold text-earth-800 mb-6">
+            Educación Fungi
+          </h1>
+          <p class="text-xl md:text-2xl text-earth-600 mb-8 leading-relaxed">
+            Descubre el fascinante mundo de los hongos funcionales y aprende cómo integrarlos 
+            de manera segura y efectiva en tu rutina de bienestar.
+          </p>
+          <div class="flex justify-center items-center space-x-4">
+            <div class="w-16 h-0.5 bg-gradient-to-r from-transparent to-earth-500"></div>
+            <div class="w-3 h-3 bg-earth-500 rounded-full"></div>
+            <div class="w-2 h-2 bg-sage-500 rounded-full"></div>
+            <div class="w-3 h-3 bg-mushroom-500 rounded-full"></div>
+            <div class="w-2 h-2 bg-sage-500 rounded-full"></div>
+            <div class="w-3 h-3 bg-earth-500 rounded-full"></div>
+            <div class="w-16 h-0.5 bg-gradient-to-l from-transparent to-earth-500"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Navigation -->
+    <section class="py-8 bg-white border-b border-sage-200">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="#introduccion" class="bg-sage-100 hover:bg-sage-200 text-sage-700 px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105">
+            Introducción
+          </a>
+          <a href="#microdosis" class="bg-sage-100 hover:bg-sage-200 text-sage-700 px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105">
+            Guía de Microdosis
+          </a>
+          <a href="#como-tomar" class="bg-sage-100 hover:bg-sage-200 text-sage-700 px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105">
+            Cómo Tomar
+          </a>
+          <a href="#beneficios" class="bg-sage-100 hover:bg-sage-200 text-sage-700 px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105">
+            Beneficios
+          </a>
+          <a href="#faq" class="bg-sage-100 hover:bg-sage-200 text-sage-700 px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105">
+            FAQ
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="introduccion" class="py-16 bg-cream-50">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+          <div class="text-center mb-12">
+            <h2 class="font-display text-4xl font-bold text-earth-800 mb-6">
+              ¿Qué son los hongos funcionales?
+            </h2>
+            <div class="flex justify-center items-center space-x-4 mb-8">
+              <div class="w-16 h-0.5 bg-gradient-to-r from-transparent to-earth-500"></div>
+              <div class="w-3 h-3 bg-earth-500 rounded-full"></div>
+              <div class="w-2 h-2 bg-sage-500 rounded-full"></div>
+              <div class="w-3 h-3 bg-mushroom-500 rounded-full"></div>
+              <div class="w-2 h-2 bg-sage-500 rounded-full"></div>
+              <div class="w-3 h-3 bg-earth-500 rounded-full"></div>
+              <div class="w-16 h-0.5 bg-gradient-to-l from-transparent to-earth-500"></div>
+            </div>
+          </div>
+
+          <div class="grid lg:grid-cols-2 gap-12 items-center mb-16">
+            <div class="space-y-6">
+              <div class="bg-white rounded-2xl p-8 shadow-lg border-2 border-sage-100">
+                <h3 class="font-display text-2xl font-semibold text-earth-800 mb-4">Definición</h3>
+                <p class="text-earth-600 leading-relaxed">
+                  Los hongos funcionales son especies específicas que han sido utilizadas durante milenios 
+                  por sus propiedades medicinales y nutricionales. A diferencia de los hongos comestibles comunes, 
+                  estos contienen compuestos bioactivos únicos como beta-glucanos, triterpenos y polisacáridos 
+                  que pueden apoyar diversos aspectos de la salud humana.
+                </p>
+              </div>
+
+              <div class="bg-white rounded-2xl p-8 shadow-lg border-2 border-sage-100">
+                <h3 class="font-display text-2xl font-semibold text-earth-800 mb-4">Historia Ancestral</h3>
+                <p class="text-earth-600 leading-relaxed">
+                  Durante más de 4,000 años, culturas como la china y la japonesa han incorporado hongos 
+                  medicinales en sus sistemas de medicina tradicional. El Reishi era conocido como el 
+                  "hongo de la inmortalidad" y reservado para la realeza, mientras que el Cordyceps 
+                  era más valioso que el oro en el Tíbet.
+                </p>
+              </div>
+            </div>
+
+            <div class="relative">
+              <div class="aspect-square rounded-2xl overflow-hidden shadow-2xl border-4 border-earth-200">
+                <img 
+                  src="https://images.pexels.com/photos/7195689/pexels-photo-7195689.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                  alt="Hongos funcionales en la naturaleza"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div class="absolute -top-4 -left-4 w-24 h-24 bg-gradient-to-br from-sage-400 to-earth-400 rounded-full flex items-center justify-center shadow-lg">
+                <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2L13.09 8.26L17.65 7.35L15.17 11.17L19.5 12L15.17 12.83L17.65 16.65L13.09 15.74L12 22L10.91 15.74L6.35 16.65L8.83 12.83L4.5 12L8.83 11.17L6.35 7.35L10.91 8.26L12 2Z"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Science Section -->
+          <div class="bg-white rounded-2xl p-8 shadow-lg border-2 border-sage-100 mb-16">
+            <h3 class="font-display text-3xl font-semibold text-earth-800 mb-6 text-center">
+              Respaldo Científico Moderno
+            </h3>
+            <div class="grid md:grid-cols-3 gap-6">
+              <div class="text-center">
+                <div class="w-16 h-16 bg-gradient-to-br from-sage-400 to-earth-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                </div>
+                <h4 class="font-display text-lg font-semibold text-earth-800 mb-2">Investigación Clínica</h4>
+                <p class="text-earth-600 text-sm">
+                  Miles de estudios científicos han validado los beneficios tradicionales de estos hongos.
+                </p>
+              </div>
+
+              <div class="text-center">
+                <div class="w-16 h-16 bg-gradient-to-br from-earth-400 to-mushroom-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                </div>
+                <h4 class="font-display text-lg font-semibold text-earth-800 mb-2">Compuestos Activos</h4>
+                <p class="text-earth-600 text-sm">
+                  Beta-glucanos, triterpenos y otros compuestos bioactivos identificados y estudiados.
+                </p>
+              </div>
+
+              <div class="text-center">
+                <div class="w-16 h-16 bg-gradient-to-br from-mushroom-400 to-sage-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                  </svg>
+                </div>
+                <h4 class="font-display text-lg font-semibold text-earth-800 mb-2">Mecanismos de Acción</h4>
+                <p class="text-earth-600 text-sm">
+                  Comprensión moderna de cómo estos hongos interactúan con nuestro organismo.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Microdosing Guide -->
+    <section id="microdosis" class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+          <div class="text-center mb-12">
+            <h2 class="font-display text-4xl font-bold text-earth-800 mb-6">
+              Guía Completa de Microdosis
+            </h2>
+            <p class="text-xl text-earth-600 leading-relaxed">
+              La microdosis es el arte de tomar cantidades muy pequeñas de hongos funcionales 
+              para obtener beneficios sutiles pero consistentes en tu bienestar diario.
+            </p>
+          </div>
+
+          <div class="grid lg:grid-cols-2 gap-8 mb-12">
+            <div class="bg-sage-50 rounded-2xl p-8 shadow-lg border-2 border-sage-200">
+              <h3 class="font-display text-2xl font-semibold text-earth-800 mb-6">¿Qué es la Microdosis?</h3>
+              <ul class="space-y-4">
+                <li class="flex items-start">
+                  <div class="w-6 h-6 bg-sage-500 rounded-full flex items-center justify-center mr-3 mt-1">
+                    <span class="text-white text-sm font-bold">1</span>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-earth-800">Dosis Sub-perceptual</h4>
+                    <p class="text-earth-600 text-sm">Cantidades tan pequeñas que no producen efectos psicoactivos notables.</p>
+                  </div>
+                </li>
+                <li class="flex items-start">
+                  <div class="w-6 h-6 bg-sage-500 rounded-full flex items-center justify-center mr-3 mt-1">
+                    <span class="text-white text-sm font-bold">2</span>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-earth-800">Beneficios Sutiles</h4>
+                    <p class="text-earth-600 text-sm">Mejoras graduales en concentración, creatividad y bienestar general.</p>
+                  </div>
+                </li>
+                <li class="flex items-start">
+                  <div class="w-6 h-6 bg-sage-500 rounded-full flex items-center justify-center mr-3 mt-1">
+                    <span class="text-white text-sm font-bold">3</span>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-earth-800">Uso Funcional</h4>
+                    <p class="text-earth-600 text-sm">Permite mantener todas las actividades diarias normalmente.</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="bg-earth-50 rounded-2xl p-8 shadow-lg border-2 border-earth-200">
+              <h3 class="font-display text-2xl font-semibold text-earth-800 mb-6">Protocolos Recomendados</h3>
+              <div class="space-y-6">
+                <div class="bg-white rounded-lg p-4 border border-earth-200">
+                  <h4 class="font-semibold text-earth-800 mb-2">Protocolo Fadiman</h4>
+                  <p class="text-earth-600 text-sm mb-2">1 día ON, 2 días OFF</p>
+                  <div class="flex space-x-2">
+                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Día 1: Dosis</span>
+                    <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">Día 2: Descanso</span>
+                    <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">Día 3: Descanso</span>
+                  </div>
+                </div>
+
+                <div class="bg-white rounded-lg p-4 border border-earth-200">
+                  <h4 class="font-semibold text-earth-800 mb-2">Protocolo Stamets</h4>
+                  <p class="text-earth-600 text-sm mb-2">5 días ON, 2 días OFF</p>
+                  <div class="text-xs text-earth-600">
+                    Lunes a Viernes: Dosis | Fin de semana: Descanso
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dosage Guidelines -->
+          <div class="bg-gradient-to-br from-cream-50 to-sage-50 rounded-2xl p-8 shadow-lg border-2 border-sage-200">
+            <h3 class="font-display text-3xl font-semibold text-earth-800 mb-8 text-center">
+              Guía de Dosificación
+            </h3>
+            <div class="grid md:grid-cols-3 gap-6">
+              <div class="bg-white rounded-xl p-6 text-center shadow-md">
+                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span class="text-green-600 font-bold text-xl">0.1g</span>
+                </div>
+                <h4 class="font-display text-lg font-semibold text-earth-800 mb-2">Principiante</h4>
+                <p class="text-earth-600 text-sm">
+                  Ideal para comenzar y evaluar sensibilidad individual.
+                </p>
+              </div>
+
+              <div class="bg-white rounded-xl p-6 text-center shadow-md">
+                <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span class="text-yellow-600 font-bold text-xl">0.2g</span>
+                </div>
+                <h4 class="font-display text-lg font-semibold text-earth-800 mb-2">Intermedio</h4>
+                <p class="text-earth-600 text-sm">
+                  Dosis estándar para la mayoría de usuarios experimentados.
+                </p>
+              </div>
+
+              <div class="bg-white rounded-xl p-6 text-center shadow-md">
+                <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span class="text-orange-600 font-bold text-xl">0.3g</span>
+                </div>
+                <h4 class="font-display text-lg font-semibold text-earth-800 mb-2">Avanzado</h4>
+                <p class="text-earth-600 text-sm">
+                  Para usuarios con experiencia que buscan efectos más pronunciados.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How to Take Section -->
+    <section id="como-tomar" class="py-16 bg-sage-50">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+          <div class="text-center mb-12">
+            <h2 class="font-display text-4xl font-bold text-earth-800 mb-6">
+              Cómo Tomar Hongos Funcionales
+            </h2>
+            <p class="text-xl text-earth-600 leading-relaxed">
+              Guía paso a paso para integrar los hongos funcionales en tu rutina diaria 
+              de manera segura y efectiva.
+            </p>
+          </div>
+
+          <div class="grid lg:grid-cols-2 gap-8 mb-12">
+            <!-- Timing -->
+            <div class="bg-white rounded-2xl p-8 shadow-lg border-2 border-sage-200">
+              <h3 class="font-display text-2xl font-semibold text-earth-800 mb-6">Mejor Momento del Día</h3>
+              <div class="space-y-4">
+                <div class="flex items-center p-4 bg-sage-50 rounded-lg">
+                  <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mr-4">
+                    <svg class="w-6 h-6 text-yellow-600" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-earth-800">Mañana (Recomendado)</h4>
+                    <p class="text-earth-600 text-sm">Con el estómago vacío, 30 min antes del desayuno</p>
+                  </div>
+                </div>
+
+                <div class="flex items-center p-4 bg-sage-50 rounded-lg">
+                  <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                    <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-earth-800">Tarde</h4>
+                    <p class="text-earth-600 text-sm">Si buscas relajación (especialmente Reishi)</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Methods -->
+            <div class="bg-white rounded-2xl p-8 shadow-lg border-2 border-sage-200">
+              <h3 class="font-display text-2xl font-semibold text-earth-800 mb-6">Métodos de Consumo</h3>
+              <div class="space-y-4">
+                <div class="p-4 bg-earth-50 rounded-lg">
+                  <h4 class="font-semibold text-earth-800 mb-2">Cápsulas</h4>
+                  <p class="text-earth-600 text-sm">Fácil dosificación, sin sabor, conveniente para viajes</p>
+                </div>
+
+                <div class="p-4 bg-earth-50 rounded-lg">
+                  <h4 class="font-semibold text-earth-800 mb-2">Polvo en Bebidas</h4>
+                  <p class="text-earth-600 text-sm">Té, café, smoothies - absorción más rápida</p>
+                </div>
+
+                <div class="p-4 bg-earth-50 rounded-lg">
+                  <h4 class="font-semibold text-earth-800 mb-2">Sublingual</h4>
+                  <p class="text-earth-600 text-sm">Bajo la lengua por 30 segundos - absorción directa</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step by Step Guide -->
+          <div class="bg-white rounded-2xl p-8 shadow-lg border-2 border-sage-200">
+            <h3 class="font-display text-3xl font-semibold text-earth-800 mb-8 text-center">
+              Protocolo Paso a Paso
+            </h3>
+            <div class="grid md:grid-cols-4 gap-6">
+              <div class="text-center">
+                <div class="w-16 h-16 bg-gradient-to-br from-sage-400 to-earth-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span class="text-white font-bold text-xl">1</span>
+                </div>
+                <h4 class="font-display text-lg font-semibold text-earth-800 mb-2">Comienza Bajo</h4>
+                <p class="text-earth-600 text-sm">
+                  Inicia con 0.1g para evaluar tu sensibilidad individual.
+                </p>
+              </div>
+
+              <div class="text-center">
+                <div class="w-16 h-16 bg-gradient-to-br from-earth-400 to-mushroom-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span class="text-white font-bold text-xl">2</span>
+                </div>
+                <h4 class="font-display text-lg font-semibold text-earth-800 mb-2">Mantén Consistencia</h4>
+                <p class="text-earth-600 text-sm">
+                  Sigue el mismo horario y protocolo durante al menos 4 semanas.
+                </p>
+              </div>
+
+              <div class="text-center">
+                <div class="w-16 h-16 bg-gradient-to-br from-mushroom-400 to-sage-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span class="text-white font-bold text-xl">3</span>
+                </div>
+                <h4 class="font-display text-lg font-semibold text-earth-800 mb-2">Lleva un Diario</h4>
+                <p class="text-earth-600 text-sm">
+                  Registra efectos, estado de ánimo y cualquier cambio notable.
+                </p>
+              </div>
+
+              <div class="text-center">
+                <div class="w-16 h-16 bg-gradient-to-br from-sage-400 to-earth-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span class="text-white font-bold text-xl">4</span>
+                </div>
+                <h4 class="font-display text-lg font-semibold text-earth-800 mb-2">Ajusta Gradualmente</h4>
+                <p class="text-earth-600 text-sm">
+                  Modifica la dosis según tu respuesta y objetivos personales.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="beneficios" class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-12">
+            <h2 class="font-display text-4xl font-bold text-earth-800 mb-6">
+              Beneficios de los Hongos Funcionales
+            </h2>
+            <p class="text-xl text-earth-600 leading-relaxed max-w-3xl mx-auto">
+              Descubre cómo cada hongo funcional puede contribuir a diferentes aspectos 
+              de tu bienestar físico, mental y emocional.
+            </p>
+          </div>
+
+          <div class="grid lg:grid-cols-3 gap-8">
+            <!-- Cognitive Benefits -->
+            <div class="bg-sage-50 rounded-2xl p-8 shadow-lg border-2 border-sage-200">
+              <div class="text-center mb-6">
+                <div class="w-20 h-20 bg-gradient-to-br from-sage-400 to-earth-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                </div>
+                <h3 class="font-display text-2xl font-semibold text-earth-800">Beneficios Cognitivos</h3>
+              </div>
+              <ul class="space-y-3">
+                <li class="flex items-center">
+                  <div class="w-2 h-2 bg-sage-500 rounded-full mr-3"></div>
+                  <span class="text-earth-600">Mejora de la concentración</span>
+                </li>
+                <li class="flex items-center">
+                  <div class="w-2 h-2 bg-sage-500 rounded-full mr-3"></div>
+                  <span class="text-earth-600">Aumento de la memoria</span>
+                </li>
+                <li class="flex items-center">
+                  <div class="w-2 h-2 bg-sage-500 rounded-full mr-3"></div>
+                  <span class="text-earth-600">Mayor claridad mental</span>
+                </li>
+                <li class="flex items-center">
+                  <div class="w-2 h-2 bg-sage-500 rounded-full mr-3"></div>
+                  <span class="text-earth-600">Estimulación de la creatividad</span>
+                </li>
+                <li class="flex items-center">
+                  <div class="w-2 h-2 bg-sage-500 rounded-full mr-3"></div>
+                  <span class="text-earth-600">Neuroprotección</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Physical Benefits -->
+            <div class="bg-earth-50 rounded-2xl p-8 shadow-lg border-2 border-earth-200">
+              <div class="text-center mb-6">
+                <div class="w-20 h-20 bg-gradient-to-br from-earth-400 to-mushroom-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                  </svg>
+                </div>
+                <h3 class="font-display text-2xl font-semibold text-earth-800">Beneficios Físicos</h3>
+              </div>
+              <ul class="space-y-3">
+                <li class="flex items-center">
+                  <div class="w-2 h-2 bg-earth-500 rounded-full mr-3"></div>
+                  <span class="text-earth-600">Aumento de energía natural</span>
+                </li>
+                <li class="flex items-center">
+                  <div class="w-2 h-2 bg-earth-500 rounded-full mr-3"></div>
+                  <span class="text-earth-600">Mejora del rendimiento físico</span>
+                </li>
+                <li class="flex items-center">
+                  <div class="w-2 h-2 bg-earth-500 rounded-full mr-3"></div>
+                  <span class="text-earth-600">Fortalecimiento inmunológico</span>
+                </li>
+                <li class="flex items-center">
+                  <div class="w-2 h-2 bg-earth-500 rounded-full mr-3"></div>
+                  <span class="text-earth-600">Propiedades antioxidantes</span>
+                </li>
+                <li class="flex items-center">
+                  <div class="w-2 h-2 bg-earth-500 rounded-full mr-3"></div>
+                  <span class="text-earth-600">Mejor oxigenación celular</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Emotional Benefits -->
+            <div class="bg-mushroom-50 rounded-2xl p-8 shadow-lg border-2 border-mushroom-200">
+              <div class="text-center mb-6">
+                <div class="w-20 h-20 bg-gradient-to-br from-mushroom-400 to-sage-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                  </svg>
+                </div>
+                <h3 class="font-display text-2xl font-semibold text-earth-800">Beneficios Emocionales</h3>
+              </div>
+              <ul class="space-y-3">
+                <li class="flex items-center">
+                  <div class="w-2 h-2 bg-mushroom-500 rounded-full mr-3"></div>
+                  <span class="text-earth-600">Reducción del estrés</span>
+                </li>
+                <li class="flex items-center">
+                  <div class="w-2 h-2 bg-mushroom-500 rounded-full mr-3"></div>
+                  <span class="text-earth-600">Mejora del estado de ánimo</span>
+                </li>
+                <li class="flex items-center">
+                  <div class="w-2 h-2 bg-mushroom-500 rounded-full mr-3"></div>
+                  <span class="text-earth-600">Mayor equilibrio emocional</span>
+                </li>
+                <li class="flex items-center">
+                  <div class="w-2 h-2 bg-mushroom-500 rounded-full mr-3"></div>
+                  <span class="text-earth-600">Calidad del sueño</span>
+                </li>
+                <li class="flex items-center">
+                  <div class="w-2 h-2 bg-mushroom-500 rounded-full mr-3"></div>
+                  <span class="text-earth-600">Sensación de bienestar</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-16 bg-cream-50">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+          <div class="text-center mb-12">
+            <h2 class="font-display text-4xl font-bold text-earth-800 mb-6">
+              Preguntas Frecuentes
+            </h2>
+            <p class="text-xl text-earth-600 leading-relaxed">
+              Resolvemos las dudas más comunes sobre el uso de hongos funcionales 
+              y microdosis para tu tranquilidad y seguridad.
+            </p>
+          </div>
+
+          <div class="space-y-6">
+            <div class="bg-white rounded-2xl shadow-lg border-2 border-sage-100 overflow-hidden">
+              <button class="faq-button w-full p-6 text-left flex justify-between items-center hover:bg-sage-50 transition-colors" data-target="faq1">
+                <h3 class="font-display text-lg font-semibold text-earth-800">
+                  ¿Los hongos funcionales son seguros para el consumo diario?
+                </h3>
+                <svg class="w-6 h-6 text-earth-600 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+              <div id="faq1" class="faq-content hidden px-6 pb-6">
+                <p class="text-earth-600 leading-relaxed">
+                  Sí, los hongos funcionales como Reishi, Melena de León y Cordyceps han sido consumidos 
+                  de forma segura durante miles de años. Sin embargo, recomendamos comenzar con dosis bajas 
+                  y consultar con un profesional de la salud si tienes condiciones médicas preexistentes 
+                  o tomas medicamentos.
+                </p>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-lg border-2 border-sage-100 overflow-hidden">
+              <button class="faq-button w-full p-6 text-left flex justify-between items-center hover:bg-sage-50 transition-colors" data-target="faq2">
+                <h3 class="font-display text-lg font-semibold text-earth-800">
+                  ¿Cuánto tiempo tarda en notarse los efectos?
+                </h3>
+                <svg class="w-6 h-6 text-earth-600 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+              <div id="faq2" class="faq-content hidden px-6 pb-6">
+                <p class="text-earth-600 leading-relaxed">
+                  Los efectos pueden variar según la persona y el tipo de hongo. Algunos usuarios reportan 
+                  cambios sutiles en los primeros días, mientras que los beneficios más significativos 
+                  generalmente se observan después de 2-4 semanas de uso consistente. La paciencia y 
+                  constancia son clave para obtener los mejores resultados.
+                </p>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-lg border-2 border-sage-100 overflow-hidden">
+              <button class="faq-button w-full p-6 text-left flex justify-between items-center hover:bg-sage-50 transition-colors" data-target="faq3">
+                <h3 class="font-display text-lg font-semibold text-earth-800">
+                  ¿Puedo combinar diferentes hongos funcionales?
+                </h3>
+                <svg class="w-6 h-6 text-earth-600 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+              <div id="faq3" class="faq-content hidden px-6 pb-6">
+                <p class="text-earth-600 leading-relaxed">
+                  Sí, muchos hongos funcionales se complementan bien entre sí. Por ejemplo, puedes combinar 
+                  Melena de León para la concentración con Reishi para la relajación. Sin embargo, 
+                  recomendamos comenzar con un solo hongo para evaluar tu respuesta individual antes 
+                  de hacer combinaciones.
+                </p>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-lg border-2 border-sage-100 overflow-hidden">
+              <button class="faq-button w-full p-6 text-left flex justify-between items-center hover:bg-sage-50 transition-colors" data-target="faq4">
+                <h3 class="font-display text-lg font-semibold text-earth-800">
+                  ¿Hay efectos secundarios conocidos?
+                </h3>
+                <svg class="w-6 h-6 text-earth-600 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+              <div id="faq4" class="faq-content hidden px-6 pb-6">
+                <p class="text-earth-600 leading-relaxed">
+                  Los hongos funcionales son generalmente bien tolerados. Algunos usuarios pueden experimentar 
+                  molestias digestivas leves al comenzar, que usualmente se resuelven con el tiempo. 
+                  Es importante comenzar con dosis bajas y aumentar gradualmente. Si experimentas cualquier 
+                  reacción adversa, discontinúa el uso y consulta con un profesional de la salud.
+                </p>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-lg border-2 border-sage-100 overflow-hidden">
+              <button class="faq-button w-full p-6 text-left flex justify-between items-center hover:bg-sage-50 transition-colors" data-target="faq5">
+                <h3 class="font-display text-lg font-semibold text-earth-800">
+                  ¿Necesito hacer descansos en el protocolo?
+                </h3>
+                <svg class="w-6 h-6 text-earth-600 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+              <div id="faq5" class="faq-content hidden px-6 pb-6">
+                <p class="text-earth-600 leading-relaxed">
+                  Sí, los descansos son importantes para mantener la efectividad y prevenir la tolerancia. 
+                  Los protocolos más comunes incluyen días de descanso regulares (como 1 día ON, 2 días OFF) 
+                  o períodos de descanso más largos cada 4-6 semanas. Esto permite que tu cuerpo mantenga 
+                  su sensibilidad a los compuestos activos.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-earth-800 text-cream-100">
+      <div class="container mx-auto px-4">
+        <div class="text-center max-w-4xl mx-auto">
+          <h2 class="font-display text-3xl md:text-4xl font-bold mb-6">
+            ¿Listo para comenzar tu viaje con hongos funcionales?
+          </h2>
+          <p class="text-xl mb-8 opacity-90">
+            Explora nuestra selección premium de hongos funcionales y comienza tu transformación 
+            hacia un bienestar natural y sostenible.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a 
+              href="/tienda"
+              class="bg-sage-500 hover:bg-sage-600 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105"
+            >
+              Ver Productos
+            </a>
+            <a 
+              href="https://wa.me/573001234567?text=Hola,%20me%20interesa%20recibir%20asesoramiento%20personalizado%20sobre%20hongos%20funcionales"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-2"
+            >
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+              </svg>
+              <span>Asesoramiento Personalizado</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+
+  <script>
+    // FAQ Accordion functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const faqButtons = document.querySelectorAll('.faq-button');
+      
+      faqButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const targetId = button.dataset.target;
+          const content = document.getElementById(targetId);
+          const icon = button.querySelector('svg');
+          
+          // Close all other FAQ items
+          faqButtons.forEach(otherButton => {
+            if (otherButton !== button) {
+              const otherTargetId = otherButton.dataset.target;
+              const otherContent = document.getElementById(otherTargetId);
+              const otherIcon = otherButton.querySelector('svg');
+              
+              otherContent.classList.add('hidden');
+              otherIcon.classList.remove('rotate-180');
+            }
+          });
+          
+          // Toggle current FAQ item
+          content.classList.toggle('hidden');
+          icon.classList.toggle('rotate-180');
+        });
+      });
+
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+    });
+  </script>
+</Layout>

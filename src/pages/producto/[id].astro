@@ -1,0 +1,373 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const { id } = Astro.params;
+
+// Datos de productos (en una aplicación real, esto vendría de una base de datos)
+const products = [
+  {
+    id: 1,
+    name: "Microdosis Melena de León",
+    price: 35000,
+    originalPrice: 42000,
+    images: [
+      "https://images.pexels.com/photos/7195706/pexels-photo-7195706.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "https://images.pexels.com/photos/7195689/pexels-photo-7195689.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "https://images.pexels.com/photos/7195684/pexels-photo-7195684.jpeg?auto=compress&cs=tinysrgb&w=800"
+    ],
+    description: "Mejora tu concentración y memoria con nuestras microdosis de melena de león premium, cultivado orgánicamente y procesado con los más altos estándares de calidad.",
+    longDescription: "La Melena de León (Hericium erinaceus) es conocida como el 'hongo inteligente' por sus excepcionales propiedades neuroprotectoras. Nuestras microdosis están cuidadosamente formuladas para proporcionar beneficios cognitivos sutiles pero efectivos, perfectas para integrar en tu rutina diaria sin interrumpir tus actividades normales.",
+    benefits: ["Concentración", "Memoria", "Neuroprotección", "Claridad Mental", "Función Cognitiva", "Creatividad"],
+    ingredients: ["Extracto de Melena de León orgánico", "Cápsula vegetal", "Sin aditivos artificiales"],
+    dosage: "Tomar 1 cápsula por la mañana con el estómago vacío, 30 minutos antes del desayuno.",
+    category: "microdosis",
+    inStock: true,
+    rating: 4.8,
+    reviews: 127
+  },
+  {
+    id: 2,
+    name: "Extracto de Reishi Premium",
+    price: 42000,
+    images: [
+      "https://images.pexels.com/photos/7195692/pexels-photo-7195692.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "https://images.pexels.com/photos/7195688/pexels-photo-7195688.jpeg?auto=compress&cs=tinysrgb&w=800"
+    ],
+    description: "El hongo de la inmortalidad para relajación profunda y bienestar integral",
+    longDescription: "El Reishi (Ganoderma lucidum) ha sido venerado durante más de 4,000 años como el 'hongo de la inmortalidad'. Nuestro extracto premium está concentrado para maximizar los triterpenos y beta-glucanos, proporcionando un apoyo excepcional para el manejo del estrés y la calidad del sueño.",
+    benefits: ["Relajación", "Inmunidad", "Sueño Reparador", "Anti-estrés", "Longevidad", "Equilibrio"],
+    ingredients: ["Extracto de Reishi 10:1", "Polvo de hongos enteros", "Cápsula vegetal"],
+    dosage: "Tomar 1-2 cápsulas por la tarde o antes de dormir.",
+    category: "extractos",
+    inStock: true,
+    rating: 4.9,
+    reviews: 89
+  }
+];
+
+const product = products.find(p => p.id === parseInt(id));
+
+if (!product) {
+  return Astro.redirect('/tienda');
+}
+---
+
+<Layout title={`${product.name} - Be Nice Fungi Shop`} description={product.description}>
+  <Header />
+  
+  <main class="pt-20">
+    <!-- Breadcrumb -->
+    <section class="py-6 bg-sage-50 border-b border-sage-200">
+      <div class="container mx-auto px-4">
+        <nav class="flex items-center space-x-2 text-sm">
+          <a href="/" class="text-earth-600 hover:text-sage-600 transition-colors">Inicio</a>
+          <svg class="w-4 h-4 text-earth-400" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M9 5l7 7-7 7"/>
+          </svg>
+          <a href="/tienda" class="text-earth-600 hover:text-sage-600 transition-colors">Tienda</a>
+          <svg class="w-4 h-4 text-earth-400" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M9 5l7 7-7 7"/>
+          </svg>
+          <span class="text-sage-600 font-medium">{product.name}</span>
+        </nav>
+      </div>
+    </section>
+
+    <!-- Product Detail -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+          <!-- Product Images -->
+          <div class="space-y-4">
+            <div class="aspect-square rounded-2xl overflow-hidden shadow-lg border-2 border-sage-200">
+              <img 
+                id="main-image"
+                src={product.images[0]} 
+                alt={product.name}
+                class="w-full h-full object-cover"
+              />
+            </div>
+            
+            {product.images.length > 1 && (
+              <div class="grid grid-cols-3 gap-4">
+                {product.images.map((image, index) => (
+                  <button 
+                    class="aspect-square rounded-lg overflow-hidden border-2 border-sage-200 hover:border-sage-500 transition-colors thumbnail-btn"
+                    data-image={image}
+                  >
+                    <img 
+                      src={image} 
+                      alt={`${product.name} - Vista ${index + 1}`}
+                      class="w-full h-full object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <!-- Product Info -->
+          <div class="space-y-6">
+            <div>
+              <h1 class="font-display text-4xl font-bold text-earth-800 mb-4">
+                {product.name}
+              </h1>
+              
+              <!-- Rating -->
+              <div class="flex items-center space-x-2 mb-4">
+                <div class="flex">
+                  {[...Array(5)].map((_, i) => (
+                    <svg 
+                      class={`w-5 h-5 ${i < Math.floor(product.rating) ? 'text-yellow-400' : 'text-gray-300'}`} 
+                      fill="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                  ))}
+                </div>
+                <span class="text-earth-600">({product.reviews} reseñas)</span>
+              </div>
+
+              <!-- Price -->
+              <div class="flex items-center space-x-4 mb-6">
+                <span class="font-bold text-3xl text-earth-800">
+                  ${product.price.toLocaleString()}
+                </span>
+                {product.originalPrice && (
+                  <span class="text-xl text-gray-500 line-through">
+                    ${product.originalPrice.toLocaleString()}
+                  </span>
+                )}
+                {product.originalPrice && (
+                  <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                    ¡Oferta!
+                  </span>
+                )}
+              </div>
+
+              <!-- Description -->
+              <p class="text-earth-600 text-lg leading-relaxed mb-6">
+                {product.description}
+              </p>
+            </div>
+
+            <!-- Benefits -->
+            <div>
+              <h3 class="font-display text-xl font-semibold text-earth-800 mb-4">Beneficios principales</h3>
+              <div class="flex flex-wrap gap-2">
+                {product.benefits.map((benefit) => (
+                  <span class="bg-sage-100 text-sage-700 px-4 py-2 rounded-full text-sm font-medium">
+                    {benefit}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <!-- Add to Cart -->
+            <div class="space-y-4">
+              <div class="flex items-center space-x-4">
+                <label for="quantity" class="font-medium text-earth-800">Cantidad:</label>
+                <select id="quantity" class="border border-sage-300 rounded-lg px-4 py-2 focus:border-sage-500 focus:ring-2 focus:ring-sage-200">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+              </div>
+
+              <button 
+                id="add-to-cart-btn"
+                class="w-full bg-sage-500 hover:bg-sage-600 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:scale-105 shadow-lg"
+                data-id={product.id}
+                data-name={product.name}
+                data-price={product.price}
+              >
+                Agregar al Carrito
+              </button>
+
+              <button 
+                id="buy-now-btn"
+                class="w-full bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:scale-105 shadow-lg flex items-center justify-center space-x-2"
+              >
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                </svg>
+                <span>Comprar Ahora</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Details Tabs -->
+        <div class="max-w-6xl mx-auto mt-16">
+          <div class="border-b border-sage-200">
+            <nav class="flex space-x-8">
+              <button class="tab-btn active py-4 px-2 border-b-2 border-sage-500 text-sage-600 font-medium" data-tab="description">
+                Descripción Detallada
+              </button>
+              <button class="tab-btn py-4 px-2 border-b-2 border-transparent text-earth-600 hover:text-sage-600 font-medium" data-tab="ingredients">
+                Ingredientes
+              </button>
+              <button class="tab-btn py-4 px-2 border-b-2 border-transparent text-earth-600 hover:text-sage-600 font-medium" data-tab="usage">
+                Modo de Uso
+              </button>
+            </nav>
+          </div>
+
+          <div class="py-8">
+            <div id="description-tab" class="tab-content">
+              <div class="prose prose-lg max-w-none">
+                <p class="text-earth-700 leading-relaxed text-lg">
+                  {product.longDescription}
+                </p>
+              </div>
+            </div>
+
+            <div id="ingredients-tab" class="tab-content hidden">
+              <h3 class="font-display text-2xl font-semibold text-earth-800 mb-4">Ingredientes</h3>
+              <ul class="space-y-2">
+                {product.ingredients.map((ingredient) => (
+                  <li class="flex items-center text-earth-700">
+                    <svg class="w-5 h-5 text-sage-500 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                    {ingredient}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div id="usage-tab" class="tab-content hidden">
+              <h3 class="font-display text-2xl font-semibold text-earth-800 mb-4">Modo de Uso</h3>
+              <div class="bg-sage-50 rounded-2xl p-6 border border-sage-200">
+                <p class="text-earth-700 text-lg leading-relaxed">
+                  {product.dosage}
+                </p>
+                <div class="mt-4 p-4 bg-yellow-50 rounded-lg border border-yellow-200">
+                  <p class="text-yellow-800 text-sm">
+                    <strong>Importante:</strong> Consulta con un profesional de la salud antes de usar si estás embarazada, amamantando o tienes condiciones médicas preexistentes.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Image gallery
+      const mainImage = document.getElementById('main-image');
+      const thumbnailBtns = document.querySelectorAll('.thumbnail-btn');
+      
+      thumbnailBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const newImage = btn.dataset.image;
+          mainImage.src = newImage;
+          
+          // Update active thumbnail
+          thumbnailBtns.forEach(b => b.classList.remove('border-sage-500'));
+          btn.classList.add('border-sage-500');
+        });
+      });
+
+      // Tabs
+      const tabBtns = document.querySelectorAll('.tab-btn');
+      const tabContents = document.querySelectorAll('.tab-content');
+      
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const tabId = btn.dataset.tab;
+          
+          // Update active tab
+          tabBtns.forEach(b => {
+            b.classList.remove('active', 'border-sage-500', 'text-sage-600');
+            b.classList.add('border-transparent', 'text-earth-600');
+          });
+          btn.classList.add('active', 'border-sage-500', 'text-sage-600');
+          btn.classList.remove('border-transparent', 'text-earth-600');
+          
+          // Show content
+          tabContents.forEach(content => content.classList.add('hidden'));
+          document.getElementById(`${tabId}-tab`).classList.remove('hidden');
+        });
+      });
+
+      // Add to cart
+      const addToCartBtn = document.getElementById('add-to-cart-btn');
+      const buyNowBtn = document.getElementById('buy-now-btn');
+      const quantitySelect = document.getElementById('quantity');
+
+      function addToCart(quantity = 1) {
+        const productId = addToCartBtn.dataset.id;
+        const productName = addToCartBtn.dataset.name;
+        const productPrice = parseInt(addToCartBtn.dataset.price);
+        
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const existingItem = cart.find(item => item.id === productId);
+        
+        if (existingItem) {
+          existingItem.quantity += quantity;
+        } else {
+          cart.push({
+            id: productId,
+            name: productName,
+            price: productPrice,
+            quantity: quantity
+          });
+        }
+        
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartCount();
+        
+        // Visual feedback
+        addToCartBtn.textContent = '¡Agregado!';
+        addToCartBtn.classList.add('bg-green-500');
+        setTimeout(() => {
+          addToCartBtn.textContent = 'Agregar al Carrito';
+          addToCartBtn.classList.remove('bg-green-500');
+        }, 2000);
+      }
+
+      function updateCartCount() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        const cartCountElements = document.querySelectorAll('#cart-count, #mobile-cart-count');
+        cartCountElements.forEach(el => {
+          if (el) el.textContent = totalItems.toString();
+        });
+        
+        window.dispatchEvent(new CustomEvent('cartUpdated'));
+      }
+
+      addToCartBtn?.addEventListener('click', () => {
+        const quantity = parseInt(quantitySelect.value);
+        addToCart(quantity);
+      });
+
+      buyNowBtn?.addEventListener('click', () => {
+        const quantity = parseInt(quantitySelect.value);
+        addToCart(quantity);
+        
+        // Redirect to WhatsApp
+        const productName = addToCartBtn.dataset.name;
+        const productPrice = parseInt(addToCartBtn.dataset.price);
+        const total = productPrice * quantity;
+        
+        const message = `Hola, me gustaría comprar:\n\n• ${quantity}x ${productName} - $${total.toLocaleString()}\n\nTotal: $${total.toLocaleString()}\n\nPor favor, ayúdame a finalizar mi pedido. ¡Gracias!`;
+        const whatsappUrl = `https://wa.me/573001234567?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank');
+      });
+
+      updateCartCount();
+    });
+  </script>
+</Layout>
