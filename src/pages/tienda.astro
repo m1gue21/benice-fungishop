@@ -3,99 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Cart from '../components/Cart.astro';
-
-const products = [
-  {
-    id: 1,
-    name: "Microdosis Melena de León",
-    price: 35000,
-    originalPrice: 42000,
-    image: "https://images.pexels.com/photos/7195706/pexels-photo-7195706.jpeg?auto=compress&cs=tinysrgb&w=500",
-    description: "Mejora tu concentración y memoria con nuestras microdosis de melena de león premium",
-    benefits: ["Concentración", "Memoria", "Neuroprotección", "Claridad Mental"],
-    category: "microdosis",
-    featured: true,
-    inStock: true
-  },
-  {
-    id: 2,
-    name: "Extracto de Reishi Premium",
-    price: 42000,
-    image: "https://images.pexels.com/photos/7195692/pexels-photo-7195692.jpeg?auto=compress&cs=tinysrgb&w=500",
-    description: "El hongo de la inmortalidad para relajación profunda y bienestar integral",
-    benefits: ["Relajación", "Inmunidad", "Sueño Reparador", "Anti-estrés"],
-    category: "extractos",
-    featured: true,
-    inStock: true
-  },
-  {
-    id: 3,
-    name: "Cordyceps Energía Natural",
-    price: 38000,
-    image: "https://images.pexels.com/photos/7195694/pexels-photo-7195694.jpeg?auto=compress&cs=tinysrgb&w=500",
-    description: "Aumenta tu energía y resistencia física de manera natural y sostenible",
-    benefits: ["Energía", "Resistencia", "Oxigenación", "Rendimiento"],
-    category: "capsulas",
-    featured: false,
-    inStock: true
-  },
-  {
-    id: 4,
-    name: "Chaga Antioxidante Supremo",
-    price: 45000,
-    image: "https://images.pexels.com/photos/7195688/pexels-photo-7195688.jpeg?auto=compress&cs=tinysrgb&w=500",
-    description: "Potente antioxidante para fortalecer tu sistema inmune y combatir el envejecimiento",
-    benefits: ["Antioxidante", "Inmunidad", "Antiinflamatorio", "Longevidad"],
-    category: "extractos",
-    featured: false,
-    inStock: true
-  },
-  {
-    id: 5,
-    name: "Shiitake Inmunidad Plus",
-    price: 32000,
-    originalPrice: 38000,
-    image: "https://images.pexels.com/photos/7195690/pexels-photo-7195690.jpeg?auto=compress&cs=tinysrgb&w=500",
-    description: "Fortalece tu sistema inmune con shiitake premium de cultivo orgánico",
-    benefits: ["Inmunidad", "Digestión", "Cardiovascular", "Vitalidad"],
-    category: "capsulas",
-    featured: false,
-    inStock: true
-  },
-  {
-    id: 6,
-    name: "Mix Adaptógeno Completo",
-    price: 58000,
-    image: "https://images.pexels.com/photos/7195695/pexels-photo-7195695.jpeg?auto=compress&cs=tinysrgb&w=500",
-    description: "Combinación perfecta de hongos adaptógenos para equilibrio total",
-    benefits: ["Adaptógeno", "Equilibrio", "Estrés", "Bienestar Integral"],
-    category: "mezclas",
-    featured: true,
-    inStock: true
-  },
-  {
-    id: 7,
-    name: "Turkey Tail Inmuno",
-    price: 40000,
-    image: "https://images.pexels.com/photos/7195689/pexels-photo-7195689.jpeg?auto=compress&cs=tinysrgb&w=500",
-    description: "Soporte inmunológico avanzado con extracto de cola de pavo",
-    benefits: ["Inmunidad", "Digestión", "Microbioma", "Defensa Natural"],
-    category: "extractos",
-    featured: false,
-    inStock: false
-  },
-  {
-    id: 8,
-    name: "Maitake Metabolismo",
-    price: 36000,
-    image: "https://images.pexels.com/photos/7195684/pexels-photo-7195684.jpeg?auto=compress&cs=tinysrgb&w=500",
-    description: "Regula el metabolismo y apoya la salud cardiovascular",
-    benefits: ["Metabolismo", "Cardiovascular", "Glucosa", "Peso Saludable"],
-    category: "capsulas",
-    featured: false,
-    inStock: true
-  }
-];
+import { products } from '../data/products.js';
 ---
 
 <Layout title="Tienda - Be Nice Fungi Shop" description="Explora nuestra colección premium de hongos funcionales. Microdosis, extractos, cápsulas y mezclas especiales para tu bienestar natural.">
@@ -158,16 +66,10 @@ const products = [
       <div class="container mx-auto px-4">
         <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="products-grid">
           {products.map((product) => (
-            <div class={`product-card bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-sage-100 ${product.featured ? 'ring-2 ring-earth-400' : ''}`} data-category={product.category}>
-              {product.featured && (
-                <div class="bg-earth-500 text-white text-center py-2 text-sm font-semibold">
-                  ⭐ DESTACADO
-                </div>
-              )}
-              
+            <div class={`product-card bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-sage-100`} data-category={product.category}>
               <div class="relative aspect-square overflow-hidden">
                 <img 
-                  src={product.image} 
+                  src={product.images[0]} 
                   alt={product.name}
                   class="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
                 />
@@ -178,13 +80,7 @@ const products = [
                     </span>
                   </div>
                 )}
-                {product.originalPrice && (
-                  <div class="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                    ¡Oferta!
-                  </div>
-                )}
               </div>
-              
               <div class="p-6">
                 <h3 class="font-display text-xl font-semibold text-earth-800 mb-3">
                   {product.name}
@@ -192,31 +88,11 @@ const products = [
                 <p class="text-earth-600 mb-4 text-sm leading-relaxed">
                   {product.description}
                 </p>
-                
-                <!-- Benefits -->
-                <div class="flex flex-wrap gap-2 mb-4">
-                  {product.benefits.slice(0, 3).map((benefit) => (
-                    <span class="bg-sage-100 text-sage-700 px-3 py-1 rounded-full text-xs font-medium">
-                      {benefit}
-                    </span>
-                  ))}
-                  {product.benefits.length > 3 && (
-                    <span class="text-sage-600 text-xs font-medium px-2 py-1">
-                      +{product.benefits.length - 3} más
-                    </span>
-                  )}
-                </div>
-                
                 <div class="flex justify-between items-center mb-4">
                   <div class="flex flex-col">
                     <span class="font-bold text-2xl text-earth-800">
                       ${product.price.toLocaleString()}
                     </span>
-                    {product.originalPrice && (
-                      <span class="text-sm text-gray-500 line-through">
-                        ${product.originalPrice.toLocaleString()}
-                      </span>
-                    )}
                   </div>
                   <button 
                     class={`px-4 py-2 rounded-full font-medium transition-all duration-300 hover:scale-105 add-to-cart ${
@@ -227,12 +103,12 @@ const products = [
                     data-id={product.id}
                     data-name={product.name}
                     data-price={product.price}
+                    data-image={product.images[0]}
                     disabled={!product.inStock}
                   >
                     {product.inStock ? 'Agregar' : 'Agotado'}
                   </button>
                 </div>
-                
                 <a 
                   href={`/producto/${product.id}`}
                   class="block w-full text-center border-2 border-sage-500 text-sage-600 hover:bg-sage-500 hover:text-white px-4 py-2 rounded-full font-medium transition-all duration-300"
@@ -325,7 +201,7 @@ const products = [
         window.dispatchEvent(new CustomEvent('cartUpdated'));
       }
 
-      function addToCart(id, name, price) {
+      function addToCart(id, name, price, image) {
         const existingItem = cart.find(item => item.id === id);
         
         if (existingItem) {
@@ -335,6 +211,7 @@ const products = [
             id: id,
             name: name,
             price: price,
+            image: image,
             quantity: 1
           });
         }
@@ -351,8 +228,9 @@ const products = [
           const productId = this.dataset.id;
           const productName = this.dataset.name;
           const productPrice = parseInt(this.dataset.price);
+          const productImage = this.dataset.image;
           
-          addToCart(productId, productName, productPrice);
+          addToCart(productId, productName, productPrice, productImage);
           
           // Visual feedback
           this.textContent = '¡Agregado!';

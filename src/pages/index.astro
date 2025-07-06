@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { products } from '../data/products.js';
 ---
 
 <Layout title="Be Nice Fungi Shop - Hongos Funcionales Premium">
@@ -25,44 +26,7 @@ import Footer from '../components/Footer.astro';
         <div class="max-w-5xl mx-auto text-center">
           <!-- Main Logo/Brand Circle -->
           <div class="mb-12 animate-scale-in">
-            <div class="relative w-40 h-40 mx-auto mb-8 circular-ornament">
-              <!-- Círculo exterior principal -->
-              <div class="absolute inset-0 rounded-full border-8 border-earth-500 bg-gradient-to-br from-cream-100 to-cream-200 shadow-2xl"></div>
-              
-              <!-- Círculo intermedio -->
-              <div class="absolute inset-4 rounded-full border-4 border-sage-500 bg-gradient-to-br from-sage-100 to-sage-200">
-                <!-- Elementos decorativos internos -->
-                <div class="absolute inset-0 flex items-center justify-center">
-                  <!-- Hongo central estilizado -->
-                  <svg class="w-16 h-16 text-earth-700" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2C8.5 2 5.5 4.5 5.5 7.5c0 1.5 0.5 3 1.5 4.5h10c1-1.5 1.5-3 1.5-4.5C18.5 4.5 15.5 2 12 2z"/>
-                    <path d="M10 12v8c0 1.1 0.9 2 2 2s2-0.9 2-2v-8H10z"/>
-                    <circle cx="8" cy="8" r="1.5" opacity="0.6"/>
-                    <circle cx="16" cy="8" r="1.5" opacity="0.6"/>
-                    <circle cx="12" cy="6" r="1" opacity="0.8"/>
-                  </svg>
-                </div>
-                
-                <!-- Elementos decorativos alrededor -->
-                <div class="absolute top-2 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-earth-500 rounded-full"></div>
-                <div class="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-earth-500 rounded-full"></div>
-                <div class="absolute top-1/2 left-2 transform -translate-y-1/2 w-3 h-3 bg-sage-600 rounded-full"></div>
-                <div class="absolute top-1/2 right-2 transform -translate-y-1/2 w-3 h-3 bg-sage-600 rounded-full"></div>
-                
-                <!-- Círculos decorativos adicionales -->
-                <div class="absolute top-6 left-6 w-2 h-2 bg-mushroom-500 rounded-full"></div>
-                <div class="absolute top-6 right-6 w-2 h-2 bg-mushroom-500 rounded-full"></div>
-                <div class="absolute bottom-6 left-6 w-2 h-2 bg-mushroom-500 rounded-full"></div>
-                <div class="absolute bottom-6 right-6 w-2 h-2 bg-mushroom-500 rounded-full"></div>
-              </div>
-              
-              <!-- Puntos decorativos exteriores -->
-              <div class="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-earth-600 rounded-full"></div>
-              <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-earth-600 rounded-full"></div>
-              <div class="absolute top-1/2 -left-2 transform -translate-y-1/2 w-4 h-4 bg-sage-600 rounded-full"></div>
-              <div class="absolute top-1/2 -right-2 transform -translate-y-1/2 w-4 h-4 bg-sage-600 rounded-full"></div>
-            </div>
-            
+            <img src="/image.png" alt="Logo Be Nice Fungi Shop" class="w-40 h-40 rounded-full shadow-2xl border-8 border-earth-500 bg-white object-cover mx-auto mb-8" />
             <h1 class="font-display text-6xl md:text-8xl font-bold text-earth-800 mb-4 tracking-wider">
               BE NICE
             </h1>
@@ -147,15 +111,6 @@ import Footer from '../components/Footer.astro';
         </div>
       </div>
 
-      <!-- Scroll Indicator -->
-      <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div class="flex flex-col items-center">
-          <div class="w-6 h-10 border-2 border-earth-500 rounded-full flex justify-center">
-            <div class="w-1 h-3 bg-earth-500 rounded-full mt-2 animate-pulse"></div>
-          </div>
-          <p class="text-earth-600 text-sm mt-2 font-medium">Descubre más</p>
-        </div>
-      </div>
     </section>
 
     <!-- Featured Products Preview -->
@@ -179,84 +134,33 @@ import Footer from '../components/Footer.astro';
             <div class="w-16 h-0.5 bg-gradient-to-l from-transparent to-earth-500"></div>
           </div>
         </div>
-
         <div class="grid md:grid-cols-3 gap-8 mb-12">
-          <!-- Product 1 -->
-          <div class="bg-cream-50 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-sage-200">
-            <div class="aspect-square overflow-hidden">
-              <img 
-                src="https://images.pexels.com/photos/7195706/pexels-photo-7195706.jpeg?auto=compress&cs=tinysrgb&w=500" 
-                alt="Melena de León"
-                class="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
-              />
-            </div>
-            <div class="p-6">
-              <h3 class="font-display text-2xl font-semibold text-earth-800 mb-3">
-                Melena de León
-              </h3>
-              <p class="text-earth-600 mb-4 leading-relaxed">
-                El hongo de la claridad mental. Potencia tu concentración, memoria y función cognitiva.
-              </p>
-              <div class="flex justify-between items-center">
-                <span class="font-bold text-2xl text-earth-800">Desde $35.000</span>
-                <a href="/tienda" class="bg-sage-500 hover:bg-sage-600 text-white px-4 py-2 rounded-full font-medium transition-all duration-300 hover:scale-105">
-                  Ver más
-                </a>
+          {products.slice(0, 3).map((product) => (
+            <div class="bg-cream-50 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-sage-200">
+              <div class="aspect-square overflow-hidden">
+                <img 
+                  src={product.images[0]} 
+                  alt={product.name}
+                  class="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                />
+              </div>
+              <div class="p-6">
+                <h3 class="font-display text-2xl font-semibold text-earth-800 mb-3">
+                  {product.name}
+                </h3>
+                <p class="text-earth-600 mb-4 leading-relaxed">
+                  {product.description}
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="font-bold text-2xl text-earth-800">${product.price.toLocaleString()}</span>
+                  <a href={`/producto/${product.id}`} class="bg-sage-500 hover:bg-sage-600 text-white px-4 py-2 rounded-full font-medium transition-all duration-300 hover:scale-105">
+                    Ver más
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
-
-          <!-- Product 2 -->
-          <div class="bg-cream-50 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-sage-200">
-            <div class="aspect-square overflow-hidden">
-              <img 
-                src="https://images.pexels.com/photos/7195692/pexels-photo-7195692.jpeg?auto=compress&cs=tinysrgb&w=500" 
-                alt="Reishi"
-                class="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
-              />
-            </div>
-            <div class="p-6">
-              <h3 class="font-display text-2xl font-semibold text-earth-800 mb-3">
-                Reishi
-              </h3>
-              <p class="text-earth-600 mb-4 leading-relaxed">
-                El hongo de la inmortalidad. Reduce el estrés, mejora el sueño y fortalece la inmunidad.
-              </p>
-              <div class="flex justify-between items-center">
-                <span class="font-bold text-2xl text-earth-800">Desde $42.000</span>
-                <a href="/tienda" class="bg-sage-500 hover:bg-sage-600 text-white px-4 py-2 rounded-full font-medium transition-all duration-300 hover:scale-105">
-                  Ver más
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Product 3 -->
-          <div class="bg-cream-50 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-sage-200">
-            <div class="aspect-square overflow-hidden">
-              <img 
-                src="https://images.pexels.com/photos/7195694/pexels-photo-7195694.jpeg?auto=compress&cs=tinysrgb&w=500" 
-                alt="Cordyceps"
-                class="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
-              />
-            </div>
-            <div class="p-6">
-              <h3 class="font-display text-2xl font-semibold text-earth-800 mb-3">
-                Cordyceps
-              </h3>
-              <p class="text-earth-600 mb-4 leading-relaxed">
-                El hongo de la energía. Aumenta la resistencia física y mejora la oxigenación celular.
-              </p>
-              <div class="flex justify-between items-center">
-                <span class="font-bold text-2xl text-earth-800">Desde $38.000</span>
-                <a href="/tienda" class="bg-sage-500 hover:bg-sage-600 text-white px-4 py-2 rounded-full font-medium transition-all duration-300 hover:scale-105">
-                  Ver más
-                </a>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
-
         <div class="text-center">
           <a 
             href="/tienda"
@@ -366,7 +270,7 @@ import Footer from '../components/Footer.astro';
               Explorar Productos
             </a>
             <a 
-              href="https://wa.me/573001234567?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20sus%20productos%20de%20hongos%20funcionales"
+              href="https://wa.me/573004940576?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20sus%20productos%20de%20hongos%20funcionales"
               target="_blank"
               rel="noopener noreferrer"
               class="bg-green-500 hover:bg-green-600 text-white px-10 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:scale-105 shadow-xl flex items-center justify-center space-x-3"

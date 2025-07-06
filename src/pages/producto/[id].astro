@@ -2,51 +2,15 @@
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import { products } from '../../data/products.js';
+
+export async function getStaticPaths() {
+  return products.map(product => ({
+    params: { id: product.id.toString() }
+  }));
+}
 
 const { id } = Astro.params;
-
-// Datos de productos (en una aplicación real, esto vendría de una base de datos)
-const products = [
-  {
-    id: 1,
-    name: "Microdosis Melena de León",
-    price: 35000,
-    originalPrice: 42000,
-    images: [
-      "https://images.pexels.com/photos/7195706/pexels-photo-7195706.jpeg?auto=compress&cs=tinysrgb&w=800",
-      "https://images.pexels.com/photos/7195689/pexels-photo-7195689.jpeg?auto=compress&cs=tinysrgb&w=800",
-      "https://images.pexels.com/photos/7195684/pexels-photo-7195684.jpeg?auto=compress&cs=tinysrgb&w=800"
-    ],
-    description: "Mejora tu concentración y memoria con nuestras microdosis de melena de león premium, cultivado orgánicamente y procesado con los más altos estándares de calidad.",
-    longDescription: "La Melena de León (Hericium erinaceus) es conocida como el 'hongo inteligente' por sus excepcionales propiedades neuroprotectoras. Nuestras microdosis están cuidadosamente formuladas para proporcionar beneficios cognitivos sutiles pero efectivos, perfectas para integrar en tu rutina diaria sin interrumpir tus actividades normales.",
-    benefits: ["Concentración", "Memoria", "Neuroprotección", "Claridad Mental", "Función Cognitiva", "Creatividad"],
-    ingredients: ["Extracto de Melena de León orgánico", "Cápsula vegetal", "Sin aditivos artificiales"],
-    dosage: "Tomar 1 cápsula por la mañana con el estómago vacío, 30 minutos antes del desayuno.",
-    category: "microdosis",
-    inStock: true,
-    rating: 4.8,
-    reviews: 127
-  },
-  {
-    id: 2,
-    name: "Extracto de Reishi Premium",
-    price: 42000,
-    images: [
-      "https://images.pexels.com/photos/7195692/pexels-photo-7195692.jpeg?auto=compress&cs=tinysrgb&w=800",
-      "https://images.pexels.com/photos/7195688/pexels-photo-7195688.jpeg?auto=compress&cs=tinysrgb&w=800"
-    ],
-    description: "El hongo de la inmortalidad para relajación profunda y bienestar integral",
-    longDescription: "El Reishi (Ganoderma lucidum) ha sido venerado durante más de 4,000 años como el 'hongo de la inmortalidad'. Nuestro extracto premium está concentrado para maximizar los triterpenos y beta-glucanos, proporcionando un apoyo excepcional para el manejo del estrés y la calidad del sueño.",
-    benefits: ["Relajación", "Inmunidad", "Sueño Reparador", "Anti-estrés", "Longevidad", "Equilibrio"],
-    ingredients: ["Extracto de Reishi 10:1", "Polvo de hongos enteros", "Cápsula vegetal"],
-    dosage: "Tomar 1-2 cápsulas por la tarde o antes de dormir.",
-    category: "extractos",
-    inStock: true,
-    rating: 4.9,
-    reviews: 89
-  }
-];
-
 const product = products.find(p => p.id === parseInt(id));
 
 if (!product) {
@@ -158,11 +122,11 @@ if (!product) {
             <div>
               <h3 class="font-display text-xl font-semibold text-earth-800 mb-4">Beneficios principales</h3>
               <div class="flex flex-wrap gap-2">
-                {product.benefits.map((benefit) => (
+                {Array.isArray(product.benefits) ? product.benefits.map((benefit) => (
                   <span class="bg-sage-100 text-sage-700 px-4 py-2 rounded-full text-sm font-medium">
                     {benefit}
                   </span>
-                ))}
+                )) : null}
               </div>
             </div>
 
@@ -185,6 +149,7 @@ if (!product) {
                 data-id={product.id}
                 data-name={product.name}
                 data-price={product.price}
+                data-image={product.images[0]}
               >
                 Agregar al Carrito
               </button>
@@ -222,7 +187,7 @@ if (!product) {
             <div id="description-tab" class="tab-content">
               <div class="prose prose-lg max-w-none">
                 <p class="text-earth-700 leading-relaxed text-lg">
-                  {product.longDescription}
+                  {product.description}
                 </p>
               </div>
             </div>
@@ -230,14 +195,14 @@ if (!product) {
             <div id="ingredients-tab" class="tab-content hidden">
               <h3 class="font-display text-2xl font-semibold text-earth-800 mb-4">Ingredientes</h3>
               <ul class="space-y-2">
-                {product.ingredients.map((ingredient) => (
+                {Array.isArray(product.ingredients) ? product.ingredients.map((ingredient) => (
                   <li class="flex items-center text-earth-700">
                     <svg class="w-5 h-5 text-sage-500 mr-3" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                     </svg>
                     {ingredient}
                   </li>
-                ))}
+                )) : null}
               </ul>
             </div>
 
@@ -310,6 +275,7 @@ if (!product) {
         const productId = addToCartBtn.dataset.id;
         const productName = addToCartBtn.dataset.name;
         const productPrice = parseInt(addToCartBtn.dataset.price);
+        const productImage = addToCartBtn.dataset.image;
         
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
         const existingItem = cart.find(item => item.id === productId);
@@ -321,6 +287,7 @@ if (!product) {
             id: productId,
             name: productName,
             price: productPrice,
+            image: productImage,
             quantity: quantity
           });
         }
@@ -363,7 +330,7 @@ if (!product) {
         const total = productPrice * quantity;
         
         const message = `Hola, me gustaría comprar:\n\n• ${quantity}x ${productName} - $${total.toLocaleString()}\n\nTotal: $${total.toLocaleString()}\n\nPor favor, ayúdame a finalizar mi pedido. ¡Gracias!`;
-        const whatsappUrl = `https://wa.me/573001234567?text=${encodeURIComponent(message)}`;
+        const whatsappUrl = `https://wa.me/573004940576?text=${encodeURIComponent(message)}`;
         window.open(whatsappUrl, '_blank');
       });
 
