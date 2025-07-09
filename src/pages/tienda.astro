@@ -61,18 +61,40 @@ import { products } from '../data/products.js';
       </div>
     </section>
 
+    <!-- Search Bar -->
+    <div class="flex justify-center mb-10 mt-8">
+      <input
+        id="search-bar"
+        type="text"
+        placeholder="Buscar por nombre, beneficio o categoría..."
+        class="w-full max-w-xl px-6 py-3 rounded-full border-2 border-sage-200 focus:border-sage-500 focus:ring-2 focus:ring-sage-100 text-lg transition-all duration-300 shadow"
+      />
+    </div>
+
     <!-- Products Grid -->
     <section class="py-16 bg-cream-50">
       <div class="container mx-auto px-4">
         <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="products-grid">
           {products.map((product) => (
-            <div class={`product-card bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-sage-100`} data-category={product.category}>
+            <div
+              class="product-card bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-sage-100"
+              data-category={product.category}
+              data-benefits={product.benefits ? product.benefits.join(',') : ''}
+              data-name={product.name.toLowerCase()}
+            >
               <div class="relative aspect-square overflow-hidden">
                 <img 
                   src={product.images[0]} 
                   alt={product.name}
                   class="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
                 />
+                {/* Badge visual */}
+                {product.badge && (
+                  <span class="absolute top-3 left-3 bg-earth-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg z-10 animate-fade-in">
+                    {product.badge}
+                  </span>
+                )}
+                {/* Badge de agotado */}
                 {!product.inStock && (
                   <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
                     <span class="bg-red-500 text-white px-4 py-2 rounded-full font-semibold">
@@ -88,6 +110,14 @@ import { products } from '../data/products.js';
                 <p class="text-earth-600 mb-4 text-sm leading-relaxed">
                   {product.description}
                 </p>
+                {/* Badges de beneficios */}
+                <div class="flex flex-wrap gap-2 mb-4">
+                  {Array.isArray(product.benefits) && product.benefits.map((benefit) => (
+                    <span class="bg-sage-100 text-sage-700 px-3 py-1 rounded-full text-xs font-medium">
+                      {benefit}
+                    </span>
+                  ))}
+                </div>
                 <div class="flex justify-between items-center mb-4">
                   <div class="flex flex-col">
                     <span class="font-bold text-2xl text-earth-800">
@@ -184,6 +214,27 @@ import { products } from '../data/products.js';
               card.style.display = 'none';
             }
           });
+        });
+      });
+
+      // Search functionality
+      const searchBar = document.getElementById('search-bar');
+
+      searchBar.addEventListener('input', function() {
+        const query = this.value.toLowerCase();
+        productCards.forEach(card => {
+          const name = card.dataset.name;
+          const category = card.dataset.category;
+          const benefits = card.dataset.benefits;
+          if (
+            name.includes(query) ||
+            category.includes(query) ||
+            benefits.includes(query)
+          ) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
         });
       });
 

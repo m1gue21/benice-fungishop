@@ -16,7 +16,13 @@ export const products = [
     description: "Micro Melena de León: producto natural de alta calidad para tu bienestar.",
     price: 70000,
     category: "microdosis",
-    inStock: true
+    inStock: true,
+    benefits: [
+      "Mejora la memoria y la concentración",
+      "Promueve la salud del sistema nervioso",
+      "Apoya el crecimiento de nuevas neuronas"
+    ],
+    badge: "Nuevo"
   },
   {
     id: 2,
@@ -32,7 +38,13 @@ export const products = [
     description: "Micro Ganoderma: producto natural de alta calidad para tu bienestar.",
     price: 70000,
     category: "microdosis",
-    inStock: true
+    inStock: true,
+    benefits: [
+      "Fortalece el sistema inmunológico",
+      "Mejora la salud cardiovascular",
+      "Posee propiedades antioxidantes"
+    ],
+    badge: "Mas vendido"
   },
   {
     id: 3,
@@ -48,7 +60,13 @@ export const products = [
     description: "Micro Cordyceps: producto natural de alta calidad para tu bienestar.",
     price: 70000,
     category: "microdosis",
-    inStock: true
+    inStock: true,
+    benefits: [
+      "Aumenta la energía y resistencia",
+      "Mejora la función respiratoria",
+      "Apoya la salud sexual"
+    ],
+    badge: "Recomendado"
   },
   {
     id: 4,
@@ -67,7 +85,13 @@ export const products = [
     description: "Micro Cola de Pavo: producto natural de alta calidad para tu bienestar.",
     price: 70000,
     category: "microdosis",
-    inStock: true
+    inStock: true,
+    benefits: [
+      "Apoya la salud del sistema inmunológico",
+      "Mejora la salud digestiva",
+      "Posee propiedades antiinflamatorias"
+    ],
+    badge: "Oferta"
   },
   {
     id: 5,
@@ -76,6 +100,12 @@ export const products = [
     description: "Micro Psilo: producto natural de alta calidad para tu bienestar.",
     price: 70000,
     category: "microdosis",
-    inStock: true
+    inStock: true,
+    benefits: [
+      "Mejora el estado de ánimo",
+      "Aumenta la creatividad",
+      "Reduce la ansiedad y el estrés"
+    ],
+    badge: "Edición limitada"
   }
 ]; 

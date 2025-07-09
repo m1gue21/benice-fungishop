@@ -137,7 +137,12 @@ import { products } from '../data/products.js';
         <div class="grid md:grid-cols-3 gap-8 mb-12">
           {products.slice(0, 3).map((product) => (
             <div class="bg-cream-50 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-sage-200">
-              <div class="aspect-square overflow-hidden">
+              <div class="aspect-square overflow-hidden relative">
+                {product.badge && (
+                  <span class="absolute top-3 left-3 bg-earth-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg z-10 animate-fade-in">
+                    {product.badge}
+                  </span>
+                )}
                 <img 
                   src={product.images[0]} 
                   alt={product.name}
