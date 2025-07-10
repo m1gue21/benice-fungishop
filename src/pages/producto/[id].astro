@@ -75,24 +75,26 @@ if (!product) {
           <!-- Product Info -->
           <div class="space-y-6">
             <div>
-              <h1 class="font-display text-4xl font-bold text-earth-800 mb-4">
-                {product.name}
-              </h1>
+              <h1 class="text-3xl font-bold mb-2">{product.name}</h1>
               
               <!-- Rating -->
-              <div class="flex items-center space-x-2 mb-4">
-                <div class="flex">
-                  {[...Array(5)].map((_, i) => (
-                    <svg 
-                      class={`w-5 h-5 ${i < Math.floor(product.rating) ? 'text-yellow-400' : 'text-gray-300'}`} 
-                      fill="currentColor" 
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              <div class="flex flex-wrap items-center gap-6 mb-4">
+                {product.rating && product.reviewsCount && (
+                  <div class="flex items-center gap-2 text-yellow-500 text-lg font-semibold">
+                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.967a1 1 0 00.95.69h4.18c.969 0 1.371 1.24.588 1.81l-3.388 2.46a1 1 0 00-.364 1.118l1.287 3.966c.3.922-.755 1.688-1.54 1.118l-3.388-2.46a1 1 0 00-1.176 0l-3.388 2.46c-.784.57-1.838-.196-1.539-1.118l1.287-3.966a1 1 0 00-.364-1.118L2.045 9.394c-.783-.57-.38-1.81.588-1.81h4.18a1 1 0 00.95-.69l1.286-3.967z"/>
                     </svg>
-                  ))}
-                </div>
-                <span class="text-earth-600">({product.reviews} reseñas)</span>
+                    {product.rating} / 5 basado en {product.reviewsCount} reseñas
+                  </div>
+                )}
+                {product.ordersCount && (
+                  <div class="flex items-center gap-2 text-green-600 text-base font-medium">
+                    <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Más de {product.ordersCount.toLocaleString()} pedidos entregados
+                  </div>
+                )}
               </div>
 
               <!-- Price -->
@@ -232,39 +234,36 @@ if (!product) {
       // Image gallery
       const mainImage = document.getElementById('main-image');
       const thumbnailBtns = document.querySelectorAll('.thumbnail-btn');
-      
-      thumbnailBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const newImage = btn.dataset.image;
-          mainImage.src = newImage;
-          
-          // Update active thumbnail
-          thumbnailBtns.forEach(b => b.classList.remove('border-sage-500'));
-          btn.classList.add('border-sage-500');
+      if (mainImage && thumbnailBtns.length > 0) {
+        thumbnailBtns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            const newImage = btn.dataset.image;
+            mainImage.src = newImage;
+            thumbnailBtns.forEach(b => b.classList.remove('border-sage-500'));
+            btn.classList.add('border-sage-500');
+          });
         });
-      });
+      }
 
       // Tabs
       const tabBtns = document.querySelectorAll('.tab-btn');
       const tabContents = document.querySelectorAll('.tab-content');
-      
-      tabBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const tabId = btn.dataset.tab;
-          
-          // Update active tab
-          tabBtns.forEach(b => {
-            b.classList.remove('active', 'border-sage-500', 'text-sage-600');
-            b.classList.add('border-transparent', 'text-earth-600');
+      if (tabBtns.length > 0 && tabContents.length > 0) {
+        tabBtns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            const tabId = btn.dataset.tab;
+            tabBtns.forEach(b => {
+              b.classList.remove('active', 'border-sage-500', 'text-sage-600');
+              b.classList.add('border-transparent', 'text-earth-600');
+            });
+            btn.classList.add('active', 'border-sage-500', 'text-sage-600');
+            btn.classList.remove('border-transparent', 'text-earth-600');
+            tabContents.forEach(content => content.classList.add('hidden'));
+            const activeTab = document.getElementById(`${tabId}-tab`);
+            if (activeTab) activeTab.classList.remove('hidden');
           });
-          btn.classList.add('active', 'border-sage-500', 'text-sage-600');
-          btn.classList.remove('border-transparent', 'text-earth-600');
-          
-          // Show content
-          tabContents.forEach(content => content.classList.add('hidden'));
-          document.getElementById(`${tabId}-tab`).classList.remove('hidden');
         });
-      });
+      }
 
       // Add to cart
       const addToCartBtn = document.getElementById('add-to-cart-btn');
@@ -272,14 +271,16 @@ if (!product) {
       const quantitySelect = document.getElementById('quantity');
 
       function addToCart(quantity = 1) {
+        if (!addToCartBtn) return;
         const productId = addToCartBtn.dataset.id;
         const productName = addToCartBtn.dataset.name;
-        const productPrice = parseInt(addToCartBtn.dataset.price);
+        const productPrice = parseInt(addToCartBtn.dataset.price, 10);
+        if (isNaN(productPrice)) return;
         const productImage = addToCartBtn.dataset.image;
-        
+
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
         const existingItem = cart.find(item => item.id === productId);
-        
+
         if (existingItem) {
           existingItem.quantity += quantity;
         } else {
@@ -291,10 +292,10 @@ if (!product) {
             quantity: quantity
           });
         }
-        
+
         localStorage.setItem('cart', JSON.stringify(cart));
         updateCartCount();
-        
+
         // Visual feedback
         addToCartBtn.textContent = '¡Agregado!';
         addToCartBtn.classList.add('bg-green-500');
@@ -311,28 +312,32 @@ if (!product) {
         cartCountElements.forEach(el => {
           if (el) el.textContent = totalItems.toString();
         });
-        
         window.dispatchEvent(new CustomEvent('cartUpdated'));
       }
 
-      addToCartBtn?.addEventListener('click', () => {
-        const quantity = parseInt(quantitySelect.value);
-        addToCart(quantity);
-      });
+      if (addToCartBtn && quantitySelect) {
+        addToCartBtn.addEventListener('click', () => {
+          const quantity = parseInt(quantitySelect.value, 10);
+          addToCart(quantity);
+        });
+      }
 
-      buyNowBtn?.addEventListener('click', () => {
-        const quantity = parseInt(quantitySelect.value);
-        addToCart(quantity);
-        
-        // Redirect to WhatsApp
-        const productName = addToCartBtn.dataset.name;
-        const productPrice = parseInt(addToCartBtn.dataset.price);
-        const total = productPrice * quantity;
-        
-        const message = `Hola, me gustaría comprar:\n\n• ${quantity}x ${productName} - $${total.toLocaleString()}\n\nTotal: $${total.toLocaleString()}\n\nPor favor, ayúdame a finalizar mi pedido. ¡Gracias!`;
-        const whatsappUrl = `https://wa.me/573232917626?text=${encodeURIComponent(message)}`;
-        window.open(whatsappUrl, '_blank');
-      });
+      if (buyNowBtn && quantitySelect && addToCartBtn) {
+        buyNowBtn.addEventListener('click', () => {
+          const quantity = parseInt(quantitySelect.value, 10);
+          addToCart(quantity);
+
+          // Redirect to WhatsApp
+          const productName = addToCartBtn.dataset.name;
+          const productPrice = parseInt(addToCartBtn.dataset.price, 10);
+          if (isNaN(productPrice)) return;
+          const total = productPrice * quantity;
+
+          const message = `Hola, me gustaría comprar:\n\n• ${quantity}x ${productName} - $${total.toLocaleString()}\n\nTotal: $${total.toLocaleString()}\n\nPor favor, ayúdame a finalizar mi pedido. ¡Gracias!`;
+          const whatsappUrl = `https://wa.me/573232917626?text=${encodeURIComponent(message)}`;
+          window.open(whatsappUrl, '_blank');
+        });
+      }
 
       updateCartCount();
     });

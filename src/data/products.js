@@ -22,7 +22,10 @@ export const products = [
       "Promueve la salud del sistema nervioso",
       "Apoya el crecimiento de nuevas neuronas"
     ],
-    badge: "Nuevo"
+    badge: "Nuevo",
+    rating: 4.8,
+  reviewsCount: 126,
+  ordersCount: 2000
   },
   {
     id: 2,
@@ -44,7 +47,10 @@ export const products = [
       "Mejora la salud cardiovascular",
       "Posee propiedades antioxidantes"
     ],
-    badge: "Mas vendido"
+    badge: "Mas vendido",
+    rating: 4.5,
+    reviewsCount: 98,
+    ordersCount: 1500
   },
   {
     id: 3,
@@ -66,7 +72,10 @@ export const products = [
       "Mejora la función respiratoria",
       "Apoya la salud sexual"
     ],
-    badge: "Recomendado"
+    badge: "Recomendado",
+    rating: 4.7,
+    reviewsCount: 75, 
+    ordersCount: 1800
   },
   {
     id: 4,
@@ -91,7 +100,10 @@ export const products = [
       "Mejora la salud digestiva",
       "Posee propiedades antiinflamatorias"
     ],
-    badge: "Oferta"
+    badge: "Oferta",
+    rating: 4.6,
+    reviewsCount: 60,
+    ordersCount: 2200
   },
   {
     id: 5,
@@ -106,6 +118,11 @@ export const products = [
       "Aumenta la creatividad",
       "Reduce la ansiedad y el estrés"
     ],
-    badge: "Edición limitada"
-  }
+    badge: "Edición limitada",
+    rating: 4.9,
+    reviewsCount: 45,
+    ordersCount: 1900
+  },
+
+  
 ]; 
