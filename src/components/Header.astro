@@ -2,16 +2,44 @@
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="bg-cream-100/95 backdrop-blur-sm fixed w-full top-0 z-50 border-b-2 border-earth-200 shadow-lg">
-  <nav class="container mx-auto px-4 py-4">
+<header class="bg-cream-100/70 backdrop-blur-md fixed w-full top-0 z-50 border-b-4 border-sage-300/40 shadow-2xl relative overflow-hidden">
+  <!-- Mushroom decorative background pattern -->
+  <div class="absolute inset-0 opacity-5 pointer-events-none">
+    <div class="absolute top-0 left-0 w-32 h-32">
+      <svg viewBox="0 0 100 100" class="w-full h-full">
+        <path d="M50 20 Q45 30 50 40 Q55 30 50 20" fill="#7a9b5a" opacity="0.3"/>
+        <ellipse cx="50" cy="45" rx="8" ry="12" fill="#b8935c" opacity="0.2"/>
+      </svg>
+    </div>
+    <div class="absolute top-0 right-0 w-24 h-24">
+      <svg viewBox="0 0 100 100" class="w-full h-full">
+        <path d="M50 15 Q45 25 50 35 Q55 25 50 15" fill="#7a9b5a" opacity="0.3"/>
+        <ellipse cx="50" cy="40" rx="6" ry="10" fill="#b8935c" opacity="0.2"/>
+      </svg>
+    </div>
+  </div>
+  
+  <!-- Floating mushroom spores -->
+  <div class="absolute top-2 left-1/4 w-2 h-2 bg-sage-400/30 rounded-full animate-float"></div>
+  <div class="absolute top-4 right-1/3 w-1.5 h-1.5 bg-earth-400/30 rounded-full animate-float" style="animation-delay: 1s;"></div>
+  <div class="absolute top-6 left-2/3 w-1 h-1 bg-mushroom-400/30 rounded-full animate-float" style="animation-delay: 2s;"></div>
+  
+  <nav class="container mx-auto px-4 py-4 relative z-10">
     <div class="flex items-center justify-between">
       <!-- Logo inspirado en el diseño original -->
-      <a href="/" class="flex items-center space-x-4 group">
-        <img src="/image.png" alt="Logo Be Nice Fungi Shop" class="w-16 h-16 rounded-full shadow-lg border-4 border-earth-500 bg-white object-cover" />
+      <a href="/" class="flex items-center space-x-4 group relative">
+        <div class="relative">
+          <img src="/image.png" alt="Logo Be Nice Fungi Shop" class="w-16 h-16 rounded-full shadow-2xl border-4 border-earth-500 bg-white object-cover group-hover:scale-110 transition-transform duration-300 ring-2 ring-sage-400/20" />
+          <!-- Decorative mushroom ring -->
+          <div class="absolute -inset-2 rounded-full border-2 border-sage-400/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse-soft"></div>
+          <!-- Small decorative spores around logo -->
+          <div class="absolute -top-1 -right-1 w-2 h-2 bg-sage-400/60 rounded-full animate-pulse-soft" style="animation-delay: 0.5s;"></div>
+          <div class="absolute -bottom-1 -left-1 w-1.5 h-1.5 bg-earth-400/60 rounded-full animate-pulse-soft" style="animation-delay: 1s;"></div>
+        </div>
         
         <div class="hidden sm:block">
-          <h1 class="font-display text-2xl font-bold text-earth-800 tracking-wide">BE NICE</h1>
-          <p class="text-sm text-earth-600 font-medium tracking-widest -mt-1">FUNGI SHOP</p>
+          <h1 class="font-display text-2xl font-bold text-earth-800 tracking-wide group-hover:text-sage-600 transition-colors drop-shadow-sm" style="text-shadow: 0 1px 3px rgba(255,255,255,0.8);">BE NICE</h1>
+          <p class="text-sm text-earth-700 font-medium tracking-widest -mt-1 group-hover:text-sage-500 transition-colors drop-shadow-sm" style="text-shadow: 0 1px 2px rgba(255,255,255,0.8);">FUNGI SHOP</p>
         </div>
       </a>
 
@@ -23,34 +51,66 @@ const currentPath = Astro.url.pathname;
       </button>
 
       <!-- Desktop Navigation -->
-      <div class="hidden md:flex items-center space-x-8">
-        <a href="/" class={`text-earth-700 hover:text-sage-600 transition-colors font-medium relative ${currentPath === '/' ? 'text-sage-600 font-semibold' : ''}`}>
-          Inicio
-          {currentPath === '/' && <div class="absolute -bottom-1 left-0 w-full h-0.5 bg-sage-500"></div>}
+      <div class="hidden md:flex items-center space-x-6">
+        <a href="/" class={`text-earth-700 hover:text-sage-600 transition-all font-medium relative px-3 py-2 rounded-lg hover:bg-sage-50/50 group ${currentPath === '/' ? 'text-sage-600 font-semibold' : ''}`}>
+          <span class="relative z-10">Inicio</span>
+          {currentPath === '/' && (
+            <>
+              <div class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-sage-500 to-earth-500 rounded-full"></div>
+              <div class="absolute inset-0 bg-sage-100/30 rounded-lg -z-0"></div>
+            </>
+          )}
+          <div class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-sage-500 rounded-full group-hover:w-full transition-all duration-300"></div>
         </a>
-        <a href="/tienda" class={`text-earth-700 hover:text-sage-600 transition-colors font-medium relative ${currentPath.startsWith('/tienda') ? 'text-sage-600 font-semibold' : ''}`}>
-          Tienda
-          {currentPath.startsWith('/tienda') && <div class="absolute -bottom-1 left-0 w-full h-0.5 bg-sage-500"></div>}
+        <a href="/tienda" class={`text-earth-700 hover:text-sage-600 transition-all font-medium relative px-3 py-2 rounded-lg hover:bg-sage-50/50 group ${currentPath.startsWith('/tienda') ? 'text-sage-600 font-semibold' : ''}`}>
+          <span class="relative z-10">Tienda</span>
+          {currentPath.startsWith('/tienda') && (
+            <>
+              <div class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-sage-500 to-earth-500 rounded-full"></div>
+              <div class="absolute inset-0 bg-sage-100/30 rounded-lg -z-0"></div>
+            </>
+          )}
+          <div class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-sage-500 rounded-full group-hover:w-full transition-all duration-300"></div>
         </a>
-        <a href="/educacion" class={`text-earth-700 hover:text-sage-600 transition-colors font-medium relative ${currentPath.startsWith('/educacion') ? 'text-sage-600 font-semibold' : ''}`}>
-          Guías de Educación
-          {currentPath.startsWith('/educacion') && <div class="absolute -bottom-1 left-0 w-full h-0.5 bg-sage-500"></div>}
+        <a href="/educacion" class={`text-earth-700 hover:text-sage-600 transition-all font-medium relative px-3 py-2 rounded-lg hover:bg-sage-50/50 group ${currentPath.startsWith('/educacion') ? 'text-sage-600 font-semibold' : ''}`}>
+          <span class="relative z-10">Guías de Educación</span>
+          {currentPath.startsWith('/educacion') && (
+            <>
+              <div class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-sage-500 to-earth-500 rounded-full"></div>
+              <div class="absolute inset-0 bg-sage-100/30 rounded-lg -z-0"></div>
+            </>
+          )}
+          <div class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-sage-500 rounded-full group-hover:w-full transition-all duration-300"></div>
         </a>
-        <a href="/nosotros" class={`text-earth-700 hover:text-sage-600 transition-colors font-medium relative ${currentPath === '/nosotros' ? 'text-sage-600 font-semibold' : ''}`}>
-          Nosotros
-          {currentPath === '/nosotros' && <div class="absolute -bottom-1 left-0 w-full h-0.5 bg-sage-500"></div>}
+        <a href="/nosotros" class={`text-earth-700 hover:text-sage-600 transition-all font-medium relative px-3 py-2 rounded-lg hover:bg-sage-50/50 group ${currentPath === '/nosotros' ? 'text-sage-600 font-semibold' : ''}`}>
+          <span class="relative z-10">Nosotros</span>
+          {currentPath === '/nosotros' && (
+            <>
+              <div class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-sage-500 to-earth-500 rounded-full"></div>
+              <div class="absolute inset-0 bg-sage-100/30 rounded-lg -z-0"></div>
+            </>
+          )}
+          <div class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-sage-500 rounded-full group-hover:w-full transition-all duration-300"></div>
         </a>
-        <a href="/contacto" class={`text-earth-700 hover:text-sage-600 transition-colors font-medium relative ${currentPath === '/contacto' ? 'text-sage-600 font-semibold' : ''}`}>
-          Contacto
-          {currentPath === '/contacto' && <div class="absolute -bottom-1 left-0 w-full h-0.5 bg-sage-500"></div>}
+        <a href="/contacto" class={`text-earth-700 hover:text-sage-600 transition-all font-medium relative px-3 py-2 rounded-lg hover:bg-sage-50/50 group ${currentPath === '/contacto' ? 'text-sage-600 font-semibold' : ''}`}>
+          <span class="relative z-10">Contacto</span>
+          {currentPath === '/contacto' && (
+            <>
+              <div class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-sage-500 to-earth-500 rounded-full"></div>
+              <div class="absolute inset-0 bg-sage-100/30 rounded-lg -z-0"></div>
+            </>
+          )}
+          <div class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-sage-500 rounded-full group-hover:w-full transition-all duration-300"></div>
         </a>
         
-        <!-- Cart Button -->
-        <a href="/carrito" class="relative p-2 rounded-lg hover:bg-earth-100 transition-colors" aria-label="Ver carrito">
-          <svg class="w-6 h-6 text-earth-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <!-- Cart Button with mushroom decoration -->
+        <a href="/carrito" class="relative p-2 rounded-lg hover:bg-sage-100/50 transition-all group" aria-label="Ver carrito">
+          <svg class="w-6 h-6 text-earth-700 group-hover:text-sage-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l-1 12H6L5 9z"></path>
           </svg>
-          <span id="cart-count" class="absolute -top-1 -right-1 bg-sage-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold hidden">0</span>
+          <span id="cart-count" class="absolute -top-1 -right-1 bg-sage-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold hidden shadow-lg">0</span>
+          <!-- Small decorative mushroom dot -->
+          <div class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-sage-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
         </a>
       </div>
     </div>
@@ -59,10 +119,29 @@ const currentPath = Astro.url.pathname;
   <!-- Mobile Navigation -->
   <div id="mobile-menu" class="md:hidden fixed left-0 top-0 w-screen h-screen z-[9999] m-0 p-0" style="display: none;">
     <div id="mobile-menu-overlay" class="fixed left-0 top-0 w-screen h-screen bg-black/50 backdrop-blur-sm z-[9999] flex" tabindex="-1">
-      <div class="fixed top-0 right-0 w-80 h-full bg-cream-100 p-6 flex flex-col overflow-y-auto z-[10000] m-0 rounded-none shadow-none pointer-events-auto" style="right:0;">
+      <div class="fixed top-0 right-0 w-80 h-full bg-gradient-to-b from-cream-100/70 to-cream-50/70 backdrop-blur-md p-6 flex flex-col overflow-y-auto z-[10000] m-0 rounded-none shadow-2xl pointer-events-auto relative overflow-hidden" style="right:0;">
+        <!-- Mushroom decorative pattern -->
+        <div class="absolute inset-0 opacity-5 pointer-events-none">
+          <div class="absolute top-10 right-10 w-20 h-20">
+            <svg viewBox="0 0 100 100" class="w-full h-full">
+              <path d="M50 20 Q45 30 50 40 Q55 30 50 20" fill="#7a9b5a"/>
+              <ellipse cx="50" cy="45" rx="8" ry="12" fill="#b8935c"/>
+            </svg>
+          </div>
+          <div class="absolute bottom-20 left-10 w-16 h-16">
+            <svg viewBox="0 0 100 100" class="w-full h-full">
+              <path d="M50 15 Q45 25 50 35 Q55 25 50 15" fill="#7a9b5a"/>
+              <ellipse cx="50" cy="40" rx="6" ry="10" fill="#b8935c"/>
+            </svg>
+          </div>
+        </div>
+        
         <!-- Logo centrado -->
-        <div class="flex flex-col items-center mb-6">
-          <img src="/image.png" alt="Logo Be Nice Fungi Shop" class="w-20 h-20 rounded-full border-4 border-earth-500 bg-white object-cover shadow-lg mb-2" />
+        <div class="flex flex-col items-center mb-6 relative z-10">
+          <div class="relative">
+            <img src="/image.png" alt="Logo Be Nice Fungi Shop" class="w-20 h-20 rounded-full border-4 border-earth-500 bg-white object-cover shadow-xl mb-2" />
+            <div class="absolute -inset-2 rounded-full border-2 border-sage-400/30 animate-pulse-soft"></div>
+          </div>
           <h2 class="font-display text-xl font-bold text-earth-800 mt-2">Menú</h2>
         </div>
         <!-- Botón cerrar -->
@@ -72,15 +151,15 @@ const currentPath = Astro.url.pathname;
           </svg>
         </button>
         <!-- Enlaces -->
-        <nav class="flex flex-col space-y-2 mt-4">
-          <a href="/" class="text-earth-700 hover:text-sage-600 font-medium py-3 border-b border-sage-100 text-lg">Inicio</a>
-          <a href="/tienda" class="text-earth-700 hover:text-sage-600 font-medium py-3 border-b border-sage-100 text-lg">Tienda</a>
-          <a href="/educacion" class="text-earth-700 hover:text-sage-600 font-medium py-3 border-b border-sage-100 text-lg">Guías de Educación</a>
-          <a href="/nosotros" class="text-earth-700 hover:text-sage-600 font-medium py-3 border-b border-sage-100 text-lg">Nosotros</a>
-          <a href="/contacto" class="text-earth-700 hover:text-sage-600 font-medium py-3 border-b border-sage-100 text-lg">Contacto</a>
+        <nav class="flex flex-col space-y-1 mt-4 relative z-10">
+          <a href="/" class="text-earth-700 hover:text-sage-600 hover:bg-sage-50/50 font-medium py-3 px-4 rounded-lg border-l-4 border-transparent hover:border-sage-500 text-lg transition-all duration-300">Inicio</a>
+          <a href="/tienda" class="text-earth-700 hover:text-sage-600 hover:bg-sage-50/50 font-medium py-3 px-4 rounded-lg border-l-4 border-transparent hover:border-sage-500 text-lg transition-all duration-300">Tienda</a>
+          <a href="/educacion" class="text-earth-700 hover:text-sage-600 hover:bg-sage-50/50 font-medium py-3 px-4 rounded-lg border-l-4 border-transparent hover:border-sage-500 text-lg transition-all duration-300">Guías de Educación</a>
+          <a href="/nosotros" class="text-earth-700 hover:text-sage-600 hover:bg-sage-50/50 font-medium py-3 px-4 rounded-lg border-l-4 border-transparent hover:border-sage-500 text-lg transition-all duration-300">Nosotros</a>
+          <a href="/contacto" class="text-earth-700 hover:text-sage-600 hover:bg-sage-50/50 font-medium py-3 px-4 rounded-lg border-l-4 border-transparent hover:border-sage-500 text-lg transition-all duration-300">Contacto</a>
         </nav>
         <!-- Botón carrito -->
-        <a href="/carrito" class="bg-sage-500 hover:bg-sage-600 text-white px-8 py-4 rounded-full transition-all duration-300 font-semibold mt-8 flex items-center justify-center space-x-3 text-lg shadow-lg">
+        <a href="/carrito" class="bg-gradient-to-r from-sage-500 to-sage-600 hover:from-sage-600 hover:to-sage-700 text-white px-8 py-4 rounded-full transition-all duration-300 font-semibold mt-8 flex items-center justify-center space-x-3 text-lg shadow-xl hover:shadow-2xl hover:scale-105 relative z-10">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l-1 12H6L5 9z"></path>
           </svg>

@@ -1,0 +1,40 @@
+---
+interface Props {
+  size?: 'tiny' | 'small' | 'medium';
+  position?: string;
+  color?: string;
+  opacity?: number;
+  delay?: number;
+}
+
+const {
+  size = 'small',
+  position = 'top-1/3 left-1/4',
+  color = 'sage-400',
+  opacity = 35,
+  delay = 0
+} = Astro.props;
+
+const sizeMap = {
+  tiny: 'w-1 h-1',
+  small: 'w-1.5 h-1.5',
+  medium: 'w-2 h-2'
+};
+
+const colorMap: Record<string, string> = {
+  'sage-400': 'rgba(122, 155, 90, 0.35)',
+  'earth-400': 'rgba(139, 115, 85, 0.35)',
+  'mushroom-400': 'rgba(139, 115, 85, 0.35)',
+  'green-400': 'rgba(34, 197, 94, 0.30)',
+  'sage-500': 'rgba(107, 142, 35, 0.30)',
+  'mushroom-500': 'rgba(139, 115, 85, 0.30)',
+};
+
+const bgColor = colorMap[color] || `rgba(122, 155, 90, ${opacity / 100})`;
+---
+
+<div 
+  class={`absolute ${position} ${sizeMap[size]} rounded-full animate-float`}
+  style={`background-color: ${bgColor}; animation-delay: ${delay}s;`}
+></div>
+
