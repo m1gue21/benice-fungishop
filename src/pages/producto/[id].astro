@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import ProductPattern from '../../components/ProductPattern.astro';
 import { products } from '../../data/products.js';
 
 export async function getStaticPaths() {
@@ -21,9 +22,49 @@ if (!product) {
 <Layout title={`${product.name} - Be Nice Fungi Shop`} description={product.description}>
   <Header />
   
-  <main class="pt-20">
+  <main class="pt-20 relative">
+    <!-- Elementos decorativos de hongos -->
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+      <div class="absolute top-20 left-10 w-18 h-18 opacity-20 animate-float">
+        <svg viewBox="0 0 100 100" class="w-full h-full">
+          <path d="M50 15 Q45 30 50 45 Q55 30 50 15" fill="#7a9b5a"/>
+          <ellipse cx="50" cy="50" rx="8" ry="12" fill="#b8935c"/>
+          <circle cx="48" cy="20" r="2" fill="#d4b896"/>
+        </svg>
+      </div>
+      <div class="absolute top-40 right-20 w-14 h-14 opacity-18 animate-float" style="animation-delay: 2s;">
+        <svg viewBox="0 0 100 100" class="w-full h-full">
+          <path d="M50 12 Q46 26 50 40 Q54 26 50 12" fill="#7a9b5a"/>
+          <ellipse cx="50" cy="45" rx="7" ry="11" fill="#b8935c"/>
+        </svg>
+      </div>
+      <div class="absolute bottom-20 left-1/4 w-16 h-16 opacity-22 animate-float" style="animation-delay: 3.5s;">
+        <svg viewBox="0 0 100 100" class="w-full h-full">
+          <path d="M50 14 Q47 28 50 42 Q53 28 50 14" fill="#7a9b5a"/>
+          <ellipse cx="50" cy="47" rx="7" ry="11" fill="#b8935c"/>
+        </svg>
+      </div>
+      <div class="absolute top-1/2 right-1/3 w-12 h-12 opacity-20 animate-float" style="animation-delay: 1.5s;">
+        <svg viewBox="0 0 100 100" class="w-full h-full">
+          <path d="M50 13 Q47 27 50 41 Q53 27 50 13" fill="#7a9b5a"/>
+          <ellipse cx="50" cy="46" rx="6" ry="10" fill="#b8935c"/>
+        </svg>
+      </div>
+      <div class="absolute top-1/3 left-2/3 w-1.5 h-1.5 bg-sage-400/30 rounded-full animate-float" style="animation-delay: 2.5s;"></div>
+      <div class="absolute bottom-1/3 right-1/4 w-1 h-1 bg-earth-400/30 rounded-full animate-float" style="animation-delay: 4s;"></div>
+      <div class="absolute top-2/3 left-1/5 w-10 h-10 opacity-16 animate-float" style="animation-delay: 3s; transform: rotate(25deg);">
+        <svg viewBox="0 0 100 100" class="w-full h-full">
+          <path d="M50 20 Q30 40 50 60 Q70 40 50 20" fill="#7a9b5a" opacity="0.7"/>
+          <path d="M50 20 L50 60" stroke="#5f7d44" stroke-width="2" opacity="0.6"/>
+        </svg>
+      </div>
+    </div>
+    
     <!-- Breadcrumb -->
-    <section class="py-6 bg-sage-50 border-b border-sage-200">
+    <section 
+      class="py-6 border-b backdrop-blur-md relative z-10"
+      style={`background-color: ${product.theme?.primaryColor || '#7a9b5a'}02; border-color: ${product.theme?.primaryColor || '#7a9b5a'}10;`}
+    >
       <div class="container mx-auto px-4">
         <nav class="flex items-center space-x-2 text-sm">
           <a href="/" class="text-earth-600 hover:text-sage-600 transition-colors">Inicio</a>
@@ -34,24 +75,38 @@ if (!product) {
           <svg class="w-4 h-4 text-earth-400" fill="currentColor" viewBox="0 0 24 24">
             <path d="M9 5l7 7-7 7"/>
           </svg>
-          <span class="text-sage-600 font-medium">{product.name}</span>
+          <span 
+            class="font-medium"
+            style={`color: ${product.theme?.primaryColor || '#7a9b5a'};`}
+          >
+            {product.name}
+          </span>
         </nav>
       </div>
     </section>
 
     <!-- Product Detail -->
-    <section class="py-16 bg-white">
+    <section class="py-16 backdrop-blur-md">
       <div class="container mx-auto px-4">
         <div class="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
           <!-- Product Images -->
           <div class="space-y-4">
-            <div class="aspect-square rounded-2xl overflow-hidden shadow-lg border-2 border-sage-200">
+            <div 
+              class="aspect-square rounded-2xl overflow-hidden shadow-lg border-2 relative"
+              style={`border-color: ${product.theme?.primaryColor || '#7a9b5a'}40;`}
+            >
               <img 
                 id="main-image"
                 src={product.images[0]} 
                 alt={product.name}
                 class="w-full h-full object-cover"
               />
+              {/* Pattern overlay */}
+              {product.theme && (
+                <div class="absolute inset-0 opacity-5 pointer-events-none">
+                  <ProductPattern pattern={product.theme.pattern} color={product.theme.primaryColor} className="w-full h-full" />
+                </div>
+              )}
             </div>
             
             {product.images.length > 1 && (
@@ -75,29 +130,39 @@ if (!product) {
           <!-- Product Info -->
           <div class="space-y-6">
             <div>
-              <h1 class="font-display text-4xl font-bold text-earth-800 mb-4">
+              <h1 
+                class="text-3xl font-bold mb-2"
+                style={`color: ${product.theme?.primaryColor || '#7a9b5a'};`}
+              >
                 {product.name}
               </h1>
               
               <!-- Rating -->
-              <div class="flex items-center space-x-2 mb-4">
-                <div class="flex">
-                  {[...Array(5)].map((_, i) => (
-                    <svg 
-                      class={`w-5 h-5 ${i < Math.floor(product.rating) ? 'text-yellow-400' : 'text-gray-300'}`} 
-                      fill="currentColor" 
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              <div class="flex flex-wrap items-center gap-6 mb-4">
+                {product.rating && product.reviewsCount && (
+                  <div class="flex items-center gap-2 text-yellow-500 text-lg font-semibold">
+                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.967a1 1 0 00.95.69h4.18c.969 0 1.371 1.24.588 1.81l-3.388 2.46a1 1 0 00-.364 1.118l1.287 3.966c.3.922-.755 1.688-1.54 1.118l-3.388-2.46a1 1 0 00-1.176 0l-3.388 2.46c-.784.57-1.838-.196-1.539-1.118l1.287-3.966a1 1 0 00-.364-1.118L2.045 9.394c-.783-.57-.38-1.81.588-1.81h4.18a1 1 0 00.95-.69l1.286-3.967z"/>
                     </svg>
-                  ))}
-                </div>
-                <span class="text-earth-600">({product.reviews} reseñas)</span>
+                    {product.rating} / 5 basado en {product.reviewsCount} reseñas
+                  </div>
+                )}
+                {product.ordersCount && (
+                  <div class="flex items-center gap-2 text-green-600 text-base font-medium">
+                    <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Más de {product.ordersCount.toLocaleString()} pedidos entregados
+                  </div>
+                )}
               </div>
 
               <!-- Price -->
               <div class="flex items-center space-x-4 mb-6">
-                <span class="font-bold text-3xl text-earth-800">
+                <span 
+                  class="font-bold text-3xl"
+                  style={`color: ${product.theme?.primaryColor || '#7a9b5a'};`}
+                >
                   ${product.price.toLocaleString()}
                 </span>
                 {product.originalPrice && (
@@ -120,10 +185,18 @@ if (!product) {
 
             <!-- Benefits -->
             <div>
-              <h3 class="font-display text-xl font-semibold text-earth-800 mb-4">Beneficios principales</h3>
+              <h3 
+                class="font-display text-xl font-semibold mb-4"
+                style={`color: ${product.theme?.primaryColor || '#7a9b5a'};`}
+              >
+                Beneficios principales
+              </h3>
               <div class="flex flex-wrap gap-2">
                 {Array.isArray(product.benefits) ? product.benefits.map((benefit) => (
-                  <span class="bg-sage-100 text-sage-700 px-4 py-2 rounded-full text-sm font-medium">
+                  <span 
+                    class="px-4 py-2 rounded-full text-sm font-medium"
+                    style={`background-color: ${product.theme?.primaryColor || '#7a9b5a'}02; color: ${product.theme?.primaryColor || '#7a9b5a'};`}
+                  >
                     {benefit}
                   </span>
                 )) : null}
@@ -145,7 +218,10 @@ if (!product) {
 
               <button 
                 id="add-to-cart-btn"
-                class="w-full bg-sage-500 hover:bg-sage-600 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:scale-105 shadow-lg"
+                class="w-full text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:scale-105 shadow-lg"
+                style={`background-color: ${product.theme?.primaryColor || '#7a9b5a'};`}
+                onmouseover={`this.style.backgroundColor='${product.theme?.primaryColorDark || product.theme?.primaryColor || '#7a9b5a'}'`}
+                onmouseout={`this.style.backgroundColor='${product.theme?.primaryColor || '#7a9b5a'}'`}
                 data-id={product.id}
                 data-name={product.name}
                 data-price={product.price}
@@ -171,13 +247,29 @@ if (!product) {
         <div class="max-w-6xl mx-auto mt-16">
           <div class="border-b border-sage-200">
             <nav class="flex space-x-8">
-              <button class="tab-btn active py-4 px-2 border-b-2 border-sage-500 text-sage-600 font-medium" data-tab="description">
+              <button 
+                class="tab-btn active py-4 px-2 border-b-2 font-medium" 
+                style={`border-color: ${product.theme?.primaryColor || '#7a9b5a'}; color: ${product.theme?.primaryColor || '#7a9b5a'};`}
+                data-tab="description"
+              >
                 Descripción Detallada
               </button>
-              <button class="tab-btn py-4 px-2 border-b-2 border-transparent text-earth-600 hover:text-sage-600 font-medium" data-tab="ingredients">
+              <button 
+                class="tab-btn py-4 px-2 border-b-2 border-transparent text-earth-600 font-medium" 
+                style={`--hover-color: ${product.theme?.primaryColor || '#7a9b5a'};`}
+                onmouseover={`this.style.color='${product.theme?.primaryColor || '#7a9b5a'}'; this.style.borderColor='${product.theme?.primaryColor || '#7a9b5a'}';`}
+                onmouseout="this.style.color=''; this.style.borderColor='transparent';"
+                data-tab="ingredients"
+              >
                 Ingredientes
               </button>
-              <button class="tab-btn py-4 px-2 border-b-2 border-transparent text-earth-600 hover:text-sage-600 font-medium" data-tab="usage">
+              <button 
+                class="tab-btn py-4 px-2 border-b-2 border-transparent text-earth-600 font-medium" 
+                style={`--hover-color: ${product.theme?.primaryColor || '#7a9b5a'};`}
+                onmouseover={`this.style.color='${product.theme?.primaryColor || '#7a9b5a'}'; this.style.borderColor='${product.theme?.primaryColor || '#7a9b5a'}';`}
+                onmouseout="this.style.color=''; this.style.borderColor='transparent';"
+                data-tab="usage"
+              >
                 Modo de Uso
               </button>
             </nav>
@@ -193,11 +285,21 @@ if (!product) {
             </div>
 
             <div id="ingredients-tab" class="tab-content hidden">
-              <h3 class="font-display text-2xl font-semibold text-earth-800 mb-4">Ingredientes</h3>
+              <h3 
+                class="font-display text-2xl font-semibold mb-4"
+                style={`color: ${product.theme?.primaryColor || '#7a9b5a'};`}
+              >
+                Ingredientes
+              </h3>
               <ul class="space-y-2">
                 {Array.isArray(product.ingredients) ? product.ingredients.map((ingredient) => (
                   <li class="flex items-center text-earth-700">
-                    <svg class="w-5 h-5 text-sage-500 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                    <svg 
+                      class="w-5 h-5 mr-3" 
+                      fill="currentColor" 
+                      viewBox="0 0 24 24"
+                      style={`color: ${product.theme?.primaryColor || '#7a9b5a'};`}
+                    >
                       <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                     </svg>
                     {ingredient}
@@ -207,13 +309,21 @@ if (!product) {
             </div>
 
             <div id="usage-tab" class="tab-content hidden">
-              <h3 class="font-display text-2xl font-semibold text-earth-800 mb-4">Modo de Uso</h3>
-              <div class="bg-sage-50 rounded-2xl p-6 border border-sage-200">
+              <h3 
+                class="font-display text-2xl font-semibold mb-4"
+                style={`color: ${product.theme?.primaryColor || '#7a9b5a'};`}
+              >
+                Modo de Uso
+              </h3>
+              <div 
+                class="rounded-2xl p-6 border"
+                style={`background-color: ${product.theme?.primaryColor || '#7a9b5a'}02; border-color: ${product.theme?.primaryColor || '#7a9b5a'}10;`}
+              >
                 <p class="text-earth-700 text-lg leading-relaxed">
                   {product.dosage}
                 </p>
-                <div class="mt-4 p-4 bg-yellow-50 rounded-lg border border-yellow-200">
-                  <p class="text-yellow-800 text-sm">
+                <div class="mt-4 p-4 bg-yellow-50/60 backdrop-blur-sm rounded-lg border-2 border-yellow-200/40">
+                  <p class="text-yellow-800 text-sm font-medium drop-shadow-sm" style="text-shadow: 0 1px 2px rgba(255,255,255,0.8);">
                     <strong>Importante:</strong> Consulta con un profesional de la salud antes de usar si estás embarazada, amamantando o tienes condiciones médicas preexistentes.
                   </p>
                 </div>
@@ -232,39 +342,39 @@ if (!product) {
       // Image gallery
       const mainImage = document.getElementById('main-image');
       const thumbnailBtns = document.querySelectorAll('.thumbnail-btn');
-      
-      thumbnailBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const newImage = btn.dataset.image;
-          mainImage.src = newImage;
-          
-          // Update active thumbnail
-          thumbnailBtns.forEach(b => b.classList.remove('border-sage-500'));
-          btn.classList.add('border-sage-500');
+      if (mainImage && thumbnailBtns.length > 0) {
+        thumbnailBtns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            const newImage = btn.dataset.image;
+            mainImage.src = newImage;
+            thumbnailBtns.forEach(b => b.classList.remove('border-sage-500'));
+            btn.classList.add('border-sage-500');
+          });
         });
-      });
+      }
 
       // Tabs
       const tabBtns = document.querySelectorAll('.tab-btn');
       const tabContents = document.querySelectorAll('.tab-content');
-      
-      tabBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const tabId = btn.dataset.tab;
-          
-          // Update active tab
-          tabBtns.forEach(b => {
-            b.classList.remove('active', 'border-sage-500', 'text-sage-600');
-            b.classList.add('border-transparent', 'text-earth-600');
+      const primaryColor = '{product.theme?.primaryColor || "#7a9b5a"}';
+      if (tabBtns.length > 0 && tabContents.length > 0) {
+        tabBtns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            const tabId = btn.dataset.tab;
+            tabBtns.forEach(b => {
+              b.classList.remove('active');
+              b.style.borderColor = 'transparent';
+              b.style.color = '';
+            });
+            btn.classList.add('active');
+            btn.style.borderColor = primaryColor;
+            btn.style.color = primaryColor;
+            tabContents.forEach(content => content.classList.add('hidden'));
+            const activeTab = document.getElementById(`${tabId}-tab`);
+            if (activeTab) activeTab.classList.remove('hidden');
           });
-          btn.classList.add('active', 'border-sage-500', 'text-sage-600');
-          btn.classList.remove('border-transparent', 'text-earth-600');
-          
-          // Show content
-          tabContents.forEach(content => content.classList.add('hidden'));
-          document.getElementById(`${tabId}-tab`).classList.remove('hidden');
         });
-      });
+      }
 
       // Add to cart
       const addToCartBtn = document.getElementById('add-to-cart-btn');
@@ -272,14 +382,16 @@ if (!product) {
       const quantitySelect = document.getElementById('quantity');
 
       function addToCart(quantity = 1) {
+        if (!addToCartBtn) return;
         const productId = addToCartBtn.dataset.id;
         const productName = addToCartBtn.dataset.name;
-        const productPrice = parseInt(addToCartBtn.dataset.price);
+        const productPrice = parseInt(addToCartBtn.dataset.price, 10);
+        if (isNaN(productPrice)) return;
         const productImage = addToCartBtn.dataset.image;
-        
+
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
         const existingItem = cart.find(item => item.id === productId);
-        
+
         if (existingItem) {
           existingItem.quantity += quantity;
         } else {
@@ -291,10 +403,10 @@ if (!product) {
             quantity: quantity
           });
         }
-        
+
         localStorage.setItem('cart', JSON.stringify(cart));
         updateCartCount();
-        
+
         // Visual feedback
         addToCartBtn.textContent = '¡Agregado!';
         addToCartBtn.classList.add('bg-green-500');
@@ -311,28 +423,32 @@ if (!product) {
         cartCountElements.forEach(el => {
           if (el) el.textContent = totalItems.toString();
         });
-        
         window.dispatchEvent(new CustomEvent('cartUpdated'));
       }
 
-      addToCartBtn?.addEventListener('click', () => {
-        const quantity = parseInt(quantitySelect.value);
-        addToCart(quantity);
-      });
+      if (addToCartBtn && quantitySelect) {
+        addToCartBtn.addEventListener('click', () => {
+          const quantity = parseInt(quantitySelect.value, 10);
+          addToCart(quantity);
+        });
+      }
 
-      buyNowBtn?.addEventListener('click', () => {
-        const quantity = parseInt(quantitySelect.value);
-        addToCart(quantity);
-        
-        // Redirect to WhatsApp
-        const productName = addToCartBtn.dataset.name;
-        const productPrice = parseInt(addToCartBtn.dataset.price);
-        const total = productPrice * quantity;
-        
-        const message = `Hola, me gustaría comprar:\n\n• ${quantity}x ${productName} - $${total.toLocaleString()}\n\nTotal: $${total.toLocaleString()}\n\nPor favor, ayúdame a finalizar mi pedido. ¡Gracias!`;
-        const whatsappUrl = `https://wa.me/573232917626?text=${encodeURIComponent(message)}`;
-        window.open(whatsappUrl, '_blank');
-      });
+      if (buyNowBtn && quantitySelect && addToCartBtn) {
+        buyNowBtn.addEventListener('click', () => {
+          const quantity = parseInt(quantitySelect.value, 10);
+          addToCart(quantity);
+
+          // Redirect to WhatsApp
+          const productName = addToCartBtn.dataset.name;
+          const productPrice = parseInt(addToCartBtn.dataset.price, 10);
+          if (isNaN(productPrice)) return;
+          const total = productPrice * quantity;
+
+          const message = `Hola, me gustaría comprar:\n\n• ${quantity}x ${productName} - $${total.toLocaleString()}\n\nTotal: $${total.toLocaleString()}\n\nPor favor, ayúdame a finalizar mi pedido. ¡Gracias!`;
+          const whatsappUrl = `https://wa.me/573232917626?text=${encodeURIComponent(message)}`;
+          window.open(whatsappUrl, '_blank');
+        });
+      }
 
       updateCartCount();
     });

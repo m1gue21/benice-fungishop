@@ -1,0 +1,48 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  showDivider?: boolean;
+  className?: string;
+}
+
+const {
+  title,
+  description,
+  showDivider = true,
+  className = ''
+} = Astro.props;
+---
+
+<section class={`py-16 relative overflow-hidden ${className}`}>
+  <div class="absolute inset-0 opacity-10">
+    <div class="ornamental-pattern w-full h-full"></div>
+  </div>
+  
+  <div class="container mx-auto px-4 relative z-10">
+    <div class="text-center max-w-4xl mx-auto">
+      <h1 class="font-display text-5xl md:text-6xl font-bold text-earth-800 mb-6 drop-shadow-lg" style="text-shadow: 0 2px 8px rgba(255,255,255,0.8);">
+        {title}
+      </h1>
+      <p class="text-xl md:text-2xl text-earth-800 mb-8 leading-relaxed font-medium drop-shadow-md" style="text-shadow: 0 1px 4px rgba(255,255,255,0.9);">
+        {description}
+      </p>
+      {showDivider && (
+        <slot name="divider">
+          <div class="flex justify-center items-center space-x-4">
+            <div class="w-16 h-0.5 bg-gradient-to-r from-transparent to-earth-500"></div>
+            <div class="w-3 h-3 bg-earth-500 rounded-full"></div>
+            <div class="w-2 h-2 bg-sage-500 rounded-full"></div>
+            <div class="w-3 h-3 bg-mushroom-500 rounded-full"></div>
+            <div class="w-2 h-2 bg-sage-500 rounded-full"></div>
+            <div class="w-3 h-3 bg-earth-500 rounded-full"></div>
+            <div class="w-16 h-0.5 bg-gradient-to-l from-transparent to-earth-500"></div>
+          </div>
+        </slot>
+      )}
+    </div>
+  </div>
+  
+  <slot name="decorations" />
+</section>
+

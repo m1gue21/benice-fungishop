@@ -1,0 +1,152 @@
+---
+import MushroomDecoration from './MushroomDecoration.astro';
+import FloatingSpore from './FloatingSpore.astro';
+import LeafDecoration from './LeafDecoration.astro';
+
+interface Props {
+  intensity?: 'low' | 'medium' | 'high';
+  includeLeaves?: boolean;
+}
+
+const {
+  intensity = 'medium',
+  includeLeaves = true
+} = Astro.props;
+---
+
+<!-- Mushrooms -->
+<MushroomDecoration 
+  size="large" 
+  position="top-10 left-10" 
+  opacity={25} 
+  delay={0}
+  variant="detailed"
+/>
+<MushroomDecoration 
+  size="medium" 
+  position="top-20 right-20" 
+  opacity={20} 
+  delay={1.5}
+  variant="simple"
+/>
+<MushroomDecoration 
+  size="medium" 
+  position="bottom-10 left-1/4" 
+  opacity={22} 
+  delay={2.5}
+  variant="detailed"
+/>
+<MushroomDecoration 
+  size="small" 
+  position="top-1/2 right-1/4" 
+  opacity={28} 
+  delay={3.2}
+  variant="simple"
+/>
+
+{intensity === 'high' && (
+  <>
+    <MushroomDecoration 
+      size="medium" 
+      position="top-1/3 left-2/3" 
+      opacity={24} 
+      delay={4}
+      variant="detailed"
+    />
+    <MushroomDecoration 
+      size="small" 
+      position="bottom-1/4 right-1/3" 
+      opacity={24} 
+      delay={1.8}
+      variant="detailed"
+    />
+  </>
+)}
+
+<!-- Spores -->
+<FloatingSpore 
+  size="medium" 
+  position="top-1/3 left-1/3" 
+  color="sage-400" 
+  opacity={35} 
+  delay={1}
+/>
+<FloatingSpore 
+  size="small" 
+  position="top-2/3 right-1/3" 
+  color="earth-400" 
+  opacity={35} 
+  delay={2}
+/>
+<FloatingSpore 
+  size="tiny" 
+  position="bottom-1/4 left-1/2" 
+  color="mushroom-400" 
+  opacity={35} 
+  delay={3}
+/>
+<FloatingSpore 
+  size="small" 
+  position="top-1/4 right-1/5" 
+  color="green-400" 
+  opacity={30} 
+  delay={4}
+/>
+
+{intensity === 'high' && (
+  <>
+    <MushroomDecoration 
+      size="medium" 
+      position="top-1/3 left-2/3" 
+      opacity={24} 
+      delay={4}
+      variant="detailed"
+    />
+    <FloatingSpore 
+      size="tiny" 
+      position="bottom-1/3 right-1/6" 
+      color="sage-500" 
+      opacity={30} 
+      delay={5}
+    />
+    <FloatingSpore 
+      size="small" 
+      position="top-4/5 left-2/3" 
+      color="mushroom-500" 
+      opacity={30} 
+      delay={1.2}
+    />
+  </>
+)}
+
+{includeLeaves && (
+  <>
+    <LeafDecoration 
+      size="medium" 
+      position="top-1/5 right-1/6" 
+      opacity={18} 
+      rotation={30} 
+      delay={2.2}
+      variant="simple"
+    />
+    <LeafDecoration 
+      size="medium" 
+      position="bottom-1/5 left-1/5" 
+      opacity={20} 
+      rotation={-25} 
+      delay={3.8}
+      variant="simple"
+    />
+    {intensity === 'high' && (
+      <LeafDecoration 
+        size="small" 
+        position="top-2/3 right-1/8" 
+        opacity={19} 
+        rotation={40} 
+        delay={4.5}
+        variant="detailed"
+      />
+    )}
+  </>
+)}
+

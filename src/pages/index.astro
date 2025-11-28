@@ -2,25 +2,25 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import ProductPattern from '../components/ProductPattern.astro';
+import FungiDecorations from '../components/decorations/FungiDecorations.astro';
 import { products } from '../data/products.js';
+import { getLegibleTextStyle, getLegibleDescriptionStyle, getLegiblePriceStyle } from '../utils/textStyles';
 ---
 
 <Layout title="Be Nice Fungi Shop - Hongos Funcionales Premium">
   <Header />
   
-  <main class="pt-20">
+  <main class="pt-20 relative">
     <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-cream-50 to-sage-50">
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden ">
       <!-- Decorative background elements -->
-      <div class="absolute inset-0 opacity-20">
+      <div class="absolute inset-0 opacity-15">
         <div class="ornamental-pattern w-full h-full"></div>
       </div>
       
-      <!-- Floating decorative elements -->
-      <div class="absolute top-20 left-10 w-16 h-16 bg-sage-200 rounded-full opacity-60 animate-float"></div>
-      <div class="absolute top-40 right-20 w-12 h-12 bg-earth-200 rounded-full opacity-40 animate-float" style="animation-delay: 1s;"></div>
-      <div class="absolute bottom-32 left-20 w-20 h-20 bg-mushroom-200 rounded-full opacity-50 animate-float" style="animation-delay: 2s;"></div>
-      <div class="absolute bottom-20 right-10 w-8 h-8 bg-sage-300 rounded-full opacity-70 animate-float" style="animation-delay: 0.5s;"></div>
+      <!-- Decorative elements -->
+      <FungiDecorations intensity="high" includeLeaves={true} />
 
       <div class="container mx-auto px-4 py-20 relative z-10">
         <div class="max-w-5xl mx-auto text-center">
@@ -44,16 +44,16 @@ import { products } from '../data/products.js';
 
           <!-- Main Message -->
           <div class="mb-16 animate-slide-up">
-            <h2 class="text-4xl md:text-5xl font-display font-semibold text-earth-800 mb-8 leading-tight">
+            <h2 class="text-4xl md:text-5xl font-display font-semibold text-earth-800 mb-8 leading-tight drop-shadow-lg" style="text-shadow: 0 2px 8px rgba(255,255,255,0.8);">
               Eleva tu bienestar con el poder ancestral de los hongos
             </h2>
-            <p class="text-xl md:text-2xl text-earth-700 max-w-4xl mx-auto leading-relaxed mb-8">
+            <p class="text-xl md:text-2xl text-earth-800 max-w-4xl mx-auto leading-relaxed mb-8 font-medium drop-shadow-md" style="text-shadow: 0 1px 4px rgba(255,255,255,0.9);">
               Descubre la sabiduría milenaria de los hongos funcionales y adaptógenos. 
               Productos de la más alta calidad para potenciar tu mente, cuerpo y espíritu 
               en armonía con la naturaleza.
             </p>
             <div class="flex justify-center">
-              <div class="w-32 h-1 bg-gradient-to-r from-sage-400 via-earth-400 to-sage-400 rounded-full"></div>
+              <div class="w-32 h-1 bg-gradient-to-r from-sage-400 via-earth-400 to-sage-400 rounded-full shadow-lg"></div>
             </div>
           </div>
 
@@ -61,13 +61,14 @@ import { products } from '../data/products.js';
           <div class="flex flex-col sm:flex-row gap-6 justify-center mb-20 animate-slide-up">
             <a 
               href="/tienda"
-              class="bg-sage-500 hover:bg-sage-600 text-white px-10 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl shadow-lg"
+              class="bg-sage-500 hover:bg-sage-600 text-white px-10 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:scale-110 hover:shadow-2xl shadow-xl relative overflow-hidden group"
             >
-              Explorar Productos
+              <span class="relative z-10">Explorar Productos</span>
+              <div class="absolute inset-0 bg-gradient-to-r from-sage-400 to-sage-600 opacity-0 group-hover:opacity-100 transition-opacity"></div>
             </a>
             <a 
               href="/educacion"
-              class="border-3 border-sage-500 text-sage-600 hover:bg-sage-500 hover:text-white px-10 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:scale-105 shadow-lg"
+              class="border-3 border-sage-500 text-sage-600 hover:bg-sage-500 hover:text-white px-10 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:scale-110 shadow-xl bg-white/1 backdrop-blur-md"
             >
               Aprender Más
             </a>
@@ -114,13 +115,13 @@ import { products } from '../data/products.js';
     </section>
 
     <!-- Featured Products Preview -->
-    <section class="py-20 bg-white">
+    <section class="py-20  -mt-1">
       <div class="container mx-auto px-4">
         <div class="text-center mb-16">
-          <h2 class="font-display text-4xl md:text-5xl font-bold text-earth-800 mb-6">
+          <h2 class="font-display text-4xl md:text-5xl font-bold text-earth-800 mb-6 drop-shadow-lg" style="text-shadow: 0 2px 8px rgba(255,255,255,0.8);">
             Productos Destacados
           </h2>
-          <p class="text-xl text-earth-600 max-w-3xl mx-auto leading-relaxed">
+          <p class="text-xl text-earth-800 max-w-3xl mx-auto leading-relaxed font-medium drop-shadow-md" style="text-shadow: 0 1px 4px rgba(255,255,255,0.9);">
             Descubre nuestra selección premium de hongos funcionales, 
             cada uno elegido por sus propiedades únicas y beneficios comprobados.
           </p>
@@ -135,31 +136,67 @@ import { products } from '../data/products.js';
           </div>
         </div>
         <div class="grid md:grid-cols-3 gap-8 mb-12">
-          {products.slice(0, 3).map((product) => (
-            <div class="bg-cream-50 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-sage-200">
-              <div class="aspect-square overflow-hidden">
+          {products.slice(0, 3).map((product) => {
+            const theme = product.theme || { primaryColor: '#7a9b5a', pattern: 'organic' };
+            return (
+            <div 
+              class="rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 relative group"
+              style={`background: linear-gradient(135deg, ${theme.primaryColor}30 0%, ${theme.primaryColor}22 50%, rgba(255,255,255,0.8) 100%); border-color: ${theme.primaryColor}50; backdrop-filter: blur(12px);`}
+            >
+              <!-- Decorative mushroom pattern overlay -->
+              <div class="absolute inset-0 opacity-5 pointer-events-none">
+                <ProductPattern pattern={theme.pattern} color={theme.primaryColor} className="w-full h-full" />
+              </div>
+              <div class="aspect-square overflow-hidden relative">
+                {product.badge && (
+                  <span 
+                    class="absolute top-3 left-3 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg z-10 animate-fade-in"
+                    style={`background-color: ${theme.primaryColor};`}
+                  >
+                    {product.badge}
+                  </span>
+                )}
                 <img 
                   src={product.images[0]} 
                   alt={product.name}
                   class="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
                 />
+                {/* Pattern overlay */}
+                <div class="absolute inset-0 opacity-10 pointer-events-none">
+                  <ProductPattern pattern={theme.pattern} color={theme.primaryColor} className="w-full h-full" />
+                </div>
               </div>
-              <div class="p-6">
-                <h3 class="font-display text-2xl font-semibold text-earth-800 mb-3">
+              <div class="p-6 relative z-10">
+                <h3 
+                  class="font-display text-2xl font-medium mb-3 group-hover:scale-105 transition-transform"
+                  style={`color: ${theme.primaryColor}; ${getLegibleTextStyle({ primaryColor: theme.primaryColor })}`}
+                >
                   {product.name}
                 </h3>
-                <p class="text-earth-600 mb-4 leading-relaxed">
+                <p class="text-earth-900 mb-4 leading-relaxed font-normal" style={getLegibleDescriptionStyle()}>
                   {product.description}
                 </p>
                 <div class="flex justify-between items-center">
-                  <span class="font-bold text-2xl text-earth-800">${product.price.toLocaleString()}</span>
-                  <a href={`/producto/${product.id}`} class="bg-sage-500 hover:bg-sage-600 text-white px-4 py-2 rounded-full font-medium transition-all duration-300 hover:scale-105">
+                  <span 
+                    class="font-semibold text-2xl"
+                    style={getLegiblePriceStyle(theme.primaryColor)}
+                  >
+                    ${product.price.toLocaleString()}
+                  </span>
+                  <a 
+                    href={`/producto/${product.id}`} 
+                    class="text-white px-4 py-2 rounded-full font-medium transition-all duration-300 hover:scale-105"
+                    style={`background-color: ${theme.primaryColor};`}
+                    onmouseover={`this.style.backgroundColor='${theme.primaryColorDark || theme.primaryColor}'`}
+                    onmouseout={`this.style.backgroundColor='${theme.primaryColor}'`}
+                  >
                     Ver más
                   </a>
                 </div>
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
         <div class="text-center">
           <a 
@@ -173,7 +210,7 @@ import { products } from '../data/products.js';
     </section>
 
     <!-- Why Choose Us -->
-    <section class="py-20 bg-gradient-to-br from-sage-50 to-cream-50">
+    <section class="py-20  -mt-1">
       <div class="container mx-auto px-4">
         <div class="text-center mb-16">
           <h2 class="font-display text-4xl md:text-5xl font-bold text-earth-800 mb-6">
@@ -247,7 +284,7 @@ import { products } from '../data/products.js';
     </section>
 
     <!-- Call to Action -->
-    <section class="py-20 bg-earth-800 text-cream-100 relative overflow-hidden">
+    <section class="py-20 bg-earth-800/70 backdrop-blur-md text-cream-100 relative overflow-hidden -mt-1">
       <div class="absolute inset-0 opacity-10">
         <div class="mushroom-decoration w-full h-full"></div>
       </div>

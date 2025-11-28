@@ -3,7 +3,11 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Cart from '../components/Cart.astro';
+import ProductPattern from '../components/ProductPattern.astro';
+import PageHero from '../components/decorations/PageHero.astro';
+import FungiDecorations from '../components/decorations/FungiDecorations.astro';
 import { products } from '../data/products.js';
+import { getLegibleTextStyle, getLegibleDescriptionStyle, getLegiblePriceStyle, getHeadingTextStyle, getParagraphTextStyle } from '../utils/textStyles';
 ---
 
 <Layout title="Tienda - Be Nice Fungi Shop" description="Explora nuestra colección premium de hongos funcionales. Microdosis, extractos, cápsulas y mezclas especiales para tu bienestar natural.">
@@ -11,35 +15,15 @@ import { products } from '../data/products.js';
   
   <main class="pt-20">
     <!-- Hero Section -->
-    <section class="py-16 bg-gradient-to-br from-cream-50 to-sage-50 relative overflow-hidden">
-      <div class="absolute inset-0 opacity-10">
-        <div class="ornamental-pattern w-full h-full"></div>
-      </div>
-      
-      <div class="container mx-auto px-4 relative z-10">
-        <div class="text-center max-w-4xl mx-auto">
-          <h1 class="font-display text-5xl md:text-6xl font-bold text-earth-800 mb-6">
-            Nuestra Tienda
-          </h1>
-          <p class="text-xl md:text-2xl text-earth-600 mb-8 leading-relaxed">
-            Descubre nuestra cuidadosa selección de hongos funcionales premium, 
-            cada uno elegido por sus propiedades únicas y beneficios comprobados para tu bienestar.
-          </p>
-          <div class="flex justify-center items-center space-x-4">
-            <div class="w-16 h-0.5 bg-gradient-to-r from-transparent to-earth-500"></div>
-            <div class="w-3 h-3 bg-earth-500 rounded-full"></div>
-            <div class="w-2 h-2 bg-sage-500 rounded-full"></div>
-            <div class="w-3 h-3 bg-mushroom-500 rounded-full"></div>
-            <div class="w-2 h-2 bg-sage-500 rounded-full"></div>
-            <div class="w-3 h-3 bg-earth-500 rounded-full"></div>
-            <div class="w-16 h-0.5 bg-gradient-to-l from-transparent to-earth-500"></div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <PageHero
+      title="Nuestra Tienda"
+      description="Descubre nuestra cuidadosa selección de hongos funcionales premium, cada uno elegido por sus propiedades únicas y beneficios comprobados para tu bienestar."
+    >
+      <FungiDecorations intensity="medium" includeLeaves={true} slot="decorations" />
+    </PageHero>
 
     <!-- Filter Section -->
-    <section class="py-8 bg-white border-b border-sage-200">
+    <section class="py-8  -mt-1">
       <div class="container mx-auto px-4">
         <div class="flex flex-wrap justify-center gap-4">
           <button class="filter-btn active bg-sage-500 text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg" data-filter="all">
@@ -61,18 +45,54 @@ import { products } from '../data/products.js';
       </div>
     </section>
 
+    <!-- Search Bar -->
+    <div class="flex justify-center mb-10 mt-8">
+      <input
+        id="search-bar"
+        type="text"
+        placeholder="Buscar por nombre, beneficio o categoría..."
+        class="w-full max-w-xl px-6 py-3 rounded-full border-2 border-sage-200 focus:border-sage-500 focus:ring-2 focus:ring-sage-100 text-lg transition-all duration-300 shadow"
+      />
+    </div>
+
     <!-- Products Grid -->
-    <section class="py-16 bg-cream-50">
+    <section class="py-16  -mt-1">
       <div class="container mx-auto px-4">
         <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="products-grid">
-          {products.map((product) => (
-            <div class={`product-card bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-sage-100`} data-category={product.category}>
+          {products.map((product) => {
+            const theme = product.theme || { primaryColor: '#7a9b5a', pattern: 'organic' };
+            return (
+            <div
+              class="product-card rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 relative group"
+              style={`background: linear-gradient(135deg, ${theme.primaryColor}30 0%, ${theme.primaryColor}22 50%, rgba(255,255,255,0.8) 100%); border-color: ${theme.primaryColor}50; backdrop-filter: blur(12px);`}
+              data-category={product.category}
+              data-benefits={product.benefits ? product.benefits.join(',') : ''}
+              data-name={product.name.toLowerCase()}
+            >
+              <!-- Decorative mushroom pattern overlay -->
+              <div class="absolute inset-0 opacity-5 pointer-events-none">
+                <ProductPattern pattern={theme.pattern} color={theme.primaryColor} className="w-full h-full" />
+              </div>
               <div class="relative aspect-square overflow-hidden">
                 <img 
                   src={product.images[0]} 
                   alt={product.name}
                   class="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
                 />
+                {/* Pattern overlay */}
+                <div class="absolute inset-0 opacity-10 pointer-events-none">
+                  <ProductPattern pattern={theme.pattern} color={theme.primaryColor} className="w-full h-full" />
+                </div>
+                {/* Badge visual */}
+                {product.badge && (
+                  <span 
+                    class="absolute top-3 left-3 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg z-10 animate-fade-in"
+                    style={`background-color: ${theme.primaryColor};`}
+                  >
+                    {product.badge}
+                  </span>
+                )}
+                {/* Badge de agotado */}
                 {!product.inStock && (
                   <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
                     <span class="bg-red-500 text-white px-4 py-2 rounded-full font-semibold">
@@ -81,25 +101,45 @@ import { products } from '../data/products.js';
                   </div>
                 )}
               </div>
-              <div class="p-6">
-                <h3 class="font-display text-xl font-semibold text-earth-800 mb-3">
+              <div class="p-6 relative z-10">
+                <h3 
+                  class="font-display text-xl font-medium mb-3 group-hover:scale-105 transition-transform"
+                  style={`color: ${theme.primaryColor}; ${getLegibleTextStyle({ primaryColor: theme.primaryColor })}`}
+                >
                   {product.name}
                 </h3>
-                <p class="text-earth-600 mb-4 text-sm leading-relaxed">
+                <p class="text-earth-900 mb-4 text-sm leading-relaxed font-normal" style={getLegibleDescriptionStyle()}>
                   {product.description}
                 </p>
+                {/* Badges de beneficios */}
+                <div class="flex flex-wrap gap-2 mb-4">
+                  {Array.isArray(product.benefits) && product.benefits.map((benefit) => (
+                    <span 
+                      class="px-3 py-1 rounded-full text-xs font-medium"
+                      style={`background-color: ${theme.primaryColor}30; color: ${theme.primaryColor}; text-shadow: 0 1px 2px rgba(255,255,255,0.8), -0.5px -0.5px 0 rgba(0,0,0,0.3), 0.5px -0.5px 0 rgba(0,0,0,0.3), -0.5px 0.5px 0 rgba(0,0,0,0.3), 0.5px 0.5px 0 rgba(0,0,0,0.3); border: 1px solid ${theme.primaryColor}40; -webkit-text-stroke: 0.15px rgba(0,0,0,0.4);`}
+                    >
+                      {benefit}
+                    </span>
+                  ))}
+                </div>
                 <div class="flex justify-between items-center mb-4">
                   <div class="flex flex-col">
-                    <span class="font-bold text-2xl text-earth-800">
+                    <span 
+                      class="font-semibold text-2xl"
+                      style={getLegiblePriceStyle(theme.primaryColor)}
+                    >
                       ${product.price.toLocaleString()}
                     </span>
                   </div>
                   <button 
-                    class={`px-4 py-2 rounded-full font-medium transition-all duration-300 hover:scale-105 add-to-cart ${
+                    class={`px-4 py-2 rounded-full font-medium transition-all duration-300 hover:scale-105 add-to-cart text-white ${
                       product.inStock 
-                        ? 'bg-sage-500 hover:bg-sage-600 text-white' 
+                        ? '' 
                         : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                     }`}
+                    style={product.inStock ? `background-color: ${theme.primaryColor};` : ''}
+                    onmouseover={product.inStock ? `this.style.backgroundColor='${theme.primaryColorDark || theme.primaryColor}'` : ''}
+                    onmouseout={product.inStock ? `this.style.backgroundColor='${theme.primaryColor}'` : ''}
                     data-id={product.id}
                     data-name={product.name}
                     data-price={product.price}
@@ -111,19 +151,23 @@ import { products } from '../data/products.js';
                 </div>
                 <a 
                   href={`/producto/${product.id}`}
-                  class="block w-full text-center border-2 border-sage-500 text-sage-600 hover:bg-sage-500 hover:text-white px-4 py-2 rounded-full font-medium transition-all duration-300"
+                  class="block w-full text-center border-2 px-4 py-2 rounded-full font-medium transition-all duration-300 hover:text-white"
+                  style={`border-color: ${theme.primaryColor}; color: ${theme.primaryColor};`}
+                  onmouseover={`this.style.backgroundColor='${theme.primaryColor}'; this.style.color='white';`}
+                  onmouseout={`this.style.backgroundColor='transparent'; this.style.color='${theme.primaryColor}';`}
                 >
                   Ver Detalles
                 </a>
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
 
     <!-- Educational CTA -->
-    <section class="py-16 bg-earth-800 text-cream-100">
+    <section class="py-16 bg-earth-800/70 backdrop-blur-md text-cream-100 -mt-1">
       <div class="container mx-auto px-4">
         <div class="text-center max-w-4xl mx-auto">
           <h2 class="font-display text-3xl md:text-4xl font-bold mb-6">
@@ -156,36 +200,59 @@ import { products } from '../data/products.js';
   <Cart />
 
   <script>
-    // Filter functionality
     document.addEventListener('DOMContentLoaded', function() {
       const filterButtons = document.querySelectorAll('.filter-btn');
       const productCards = document.querySelectorAll('.product-card');
+      const searchBar = document.getElementById('search-bar');
 
       // Filter products
-      filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-          const filter = button.dataset.filter;
-          
-          // Update active button
-          filterButtons.forEach(btn => {
-            btn.classList.remove('active', 'bg-sage-500', 'text-white');
-            btn.classList.add('bg-sage-100', 'text-sage-700');
-          });
-          button.classList.add('active', 'bg-sage-500', 'text-white');
-          button.classList.remove('bg-sage-100', 'text-sage-700');
+      if (filterButtons.length && productCards.length) {
+        filterButtons.forEach(button => {
+          button.addEventListener('click', () => {
+            const filter = button.dataset.filter;
 
-          // Filter products
+            // Update active button
+            filterButtons.forEach(btn => {
+              btn.classList.remove('active', 'bg-sage-500', 'text-white');
+              btn.classList.add('bg-sage-100', 'text-sage-700');
+            });
+            button.classList.add('active', 'bg-sage-500', 'text-white');
+            button.classList.remove('bg-sage-100', 'text-sage-700');
+
+            // Filter products
+            productCards.forEach(card => {
+              const category = card.dataset.category || '';
+              if (filter === 'all' || category === filter) {
+                card.style.display = 'block';
+                card.classList.add('animate-fade-in');
+              } else {
+                card.style.display = 'none';
+              }
+            });
+          });
+        });
+      }
+
+      // Search functionality
+      if (searchBar && productCards.length > 0) {
+        searchBar.addEventListener('input', function() {
+          const query = this.value.toLowerCase();
           productCards.forEach(card => {
-            const category = card.dataset.category;
-            if (filter === 'all' || category === filter) {
+            const name = (card.dataset.name || '').toLowerCase();
+            const category = (card.dataset.category || '').toLowerCase();
+            const benefits = (card.dataset.benefits || '').toLowerCase();
+            if (
+              name.includes(query) ||
+              category.includes(query) ||
+              benefits.includes(query)
+            ) {
               card.style.display = 'block';
-              card.classList.add('animate-fade-in');
             } else {
               card.style.display = 'none';
             }
           });
         });
-      });
+      }
 
       // Cart functionality
       let cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -196,14 +263,12 @@ import { products } from '../data/products.js';
         cartCountElements.forEach(el => {
           if (el) el.textContent = totalItems.toString();
         });
-        
-        // Dispatch custom event
         window.dispatchEvent(new CustomEvent('cartUpdated'));
       }
 
       function addToCart(id, name, price, image) {
         const existingItem = cart.find(item => item.id === id);
-        
+
         if (existingItem) {
           existingItem.quantity += 1;
         } else {
@@ -215,7 +280,7 @@ import { products } from '../data/products.js';
             quantity: 1
           });
         }
-        
+
         localStorage.setItem('cart', JSON.stringify(cart));
         updateCartCount();
       }
@@ -224,14 +289,15 @@ import { products } from '../data/products.js';
       document.querySelectorAll('.add-to-cart').forEach(button => {
         button.addEventListener('click', function() {
           if (this.disabled) return;
-          
+
           const productId = this.dataset.id;
           const productName = this.dataset.name;
-          const productPrice = parseInt(this.dataset.price);
+          const productPrice = parseInt(this.dataset.price, 10);
+          if (isNaN(productPrice)) return;
           const productImage = this.dataset.image;
-          
+
           addToCart(productId, productName, productPrice, productImage);
-          
+
           // Visual feedback
           this.textContent = '¡Agregado!';
           this.classList.add('bg-green-500');
@@ -243,6 +309,13 @@ import { products } from '../data/products.js';
       });
 
       updateCartCount();
+
+      window.addEventListener('storage', function(e) {
+        if (e.key === 'cart') {
+          cart = JSON.parse(localStorage.getItem('cart')) || [];
+          updateCartCount();
+        }
+      });
     });
   </script>
 </Layout>

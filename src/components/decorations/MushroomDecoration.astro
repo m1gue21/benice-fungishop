@@ -1,0 +1,61 @@
+---
+interface Props {
+  size?: 'small' | 'medium' | 'large' | 'xlarge';
+  position?: string;
+  opacity?: number;
+  delay?: number;
+  variant?: 'simple' | 'detailed' | 'large-detailed';
+}
+
+const {
+  size = 'medium',
+  position = 'top-10 left-10',
+  opacity = 25,
+  delay = 0,
+  variant = 'detailed'
+} = Astro.props;
+
+const sizeMap = {
+  small: 'w-12 h-12',
+  medium: 'w-16 h-16',
+  large: 'w-20 h-20',
+  xlarge: 'w-24 h-24'
+};
+
+const viewBoxMap = {
+  simple: '0 0 100 100',
+  detailed: '0 0 100 100',
+  'large-detailed': '0 0 120 120'
+};
+---
+
+<div 
+  class={`absolute ${position} ${sizeMap[size]} animate-float`}
+  style={`opacity: ${opacity}%; animation-delay: ${delay}s;`}
+>
+  {variant === 'simple' && (
+    <svg viewBox={viewBoxMap[variant]} class="w-full h-full">
+      <path d="M50 12 Q46 26 50 40 Q54 26 50 12" fill="#7a9b5a"/>
+      <ellipse cx="50" cy="45" rx="7" ry="11" fill="#b8935c"/>
+    </svg>
+  )}
+  
+  {variant === 'detailed' && (
+    <svg viewBox={viewBoxMap[variant]} class="w-full h-full">
+      <path d="M50 15 Q45 30 50 45 Q55 30 50 15" fill="#7a9b5a"/>
+      <ellipse cx="50" cy="50" rx="8" ry="12" fill="#b8935c"/>
+      <circle cx="48" cy="20" r="2" fill="#d4b896"/>
+      <circle cx="52" cy="23" r="1.5" fill="#d4b896"/>
+    </svg>
+  )}
+  
+  {variant === 'large-detailed' && (
+    <svg viewBox={viewBoxMap[variant]} class="w-full h-full">
+      <path d="M60 18 Q54 35 60 52 Q66 35 60 18" fill="#7a9b5a"/>
+      <ellipse cx="60" cy="57" rx="9" ry="14" fill="#b8935c"/>
+      <circle cx="57" cy="25" r="2.5" fill="#d4b896"/>
+      <circle cx="63" cy="28" r="2" fill="#d4b896"/>
+    </svg>
+  )}
+</div>
+

@@ -27,7 +27,7 @@ const testimonials = [
 ];
 ---
 
-<section class="py-20 bg-white">
+<section class="py-20 ">
   <div class="container mx-auto px-4">
     <!-- Section Header -->
     <div class="text-center mb-16">
@@ -43,7 +43,7 @@ const testimonials = [
     <!-- Testimonials Grid -->
     <div class="grid md:grid-cols-3 gap-8 mb-16">
       {testimonials.map((testimonial) => (
-        <div class="bg-sage-50 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-sage-100">
+        <div class="rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-sage-100/10">
           <!-- Stars -->
           <div class="flex mb-4">
             {[...Array(testimonial.rating)].map((_, i) => (
